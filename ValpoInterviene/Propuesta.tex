@@ -1,0 +1,206 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=letter, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[spanish]{babel} % English language/hyphenation
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{mwe}
+\usepackage{sectsty} % Allows customizing section commands
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
+\allsectionsfont{ \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead[L]{INF-270 Organización y Sistemas de Información - Claudia Lopez} % No page header - if you want one, create it in the same way as the footers below
+\fancyhead[R]{Período 2016-1} 
+ 
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+
+\author{Ignacio Ampuero S. 201473032-2\\ Anghelo Carvajal C. 201473062-4\\Eduardo Pozo V. 201473040-3} 
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+\begin{center}
+  \setlength{\tabcolsep}{0pt}
+  \begin{tabular}{>{\raggedleft}m{2.5cm}>{\centering}m{\dimexpr\textwidth - 5cm\relax}>{\raggedright}m{2.5cm}}
+  \includegraphics[width=\linewidth]{logo}%
+  &%
+ \textsc{Universidad técnica federico Santa maría\\Departamento de informática} \\ [25pt] % Your university, school and/or department
+  &%
+  \includegraphics[width=\linewidth]{di} %
+  \end{tabular}
+ 
+\normalfont \normalsize 
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Primera Entrega Licitación \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+\end{center}
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+\subsection*{Integrantes Equipo PAC Solutions}
+\begin {itemize}
+\item Ignacio Ampuero S. 201473032-2
+\item Anghelo Carvajal C. 201473062-4 
+\item Eduardo Pozo V. 201473040-3
+\end{itemize} 
+\section{Resumen de Propuesta}
+Nuestra propuesta consiste en la implementación de un sistema web de gestion de residuos. Desde esta plataforma se podrá obtener control sobre el estado de los puntos de reciclaje. A grandes rasgos el sistema facilitará administrar los puntos de reciclaje, juntas de vecinos y gestionar los puntos que se encuentren llenos y poder ver mediante un mapa la ubicación de estos.
+
+\section{Contexto de Licitación}
+Antes de explicar nuestra propuesta ante el llamado a licitación de Valpo Interviene queremos establecer un contexto previo de esta organización para demostrar comprensión del caso y una buena orientación de la propuesta en sí.\\
+
+ValpoInterviene es una ONG que se preocupa por la protección del medio ambiente y la recuperación de espacios públicos de valparaíso y busca fomentar una cultura mediambiental(Reducir, Reciclar, Reutilizar) en la comunidad y empresas. Para cumplir estos objetivos ValpoInterviene ha puesto a disposición de la comunidad talleres de vermicompostaje, 13 contenedores para botellas plasticas y vinculaciónes con juntas de vecinos para fomentar la cultura de “Basura Cero” además de relacionarse con hostales prestando el servicio de retiro de residuos.\\
+
+Asimismo el objetivo de recuperar espacios publicos se ha logrado mediante a voluntarios y vecinos de distintos sitios. Algunas de estas intervenciones con afan de recuperar y embellecer lugares se ha llevado a cabo en la plaza Bismark, la escalera Hector Calvo o actualmente en la escalera General Mackena.\\
+
+Al ser una ONG no posee competidores y no tiene un mercado que intervenir por tanto no debe ser competitivo en sus procesos, dado que todo lo que hace la ONG es trabajar a favor de la comunidad y fomentar buenas practicas ambientales.\\
+
+ValpoInterviene tiene un grupo de partners u organismos asociados, estos son:
+\begin{itemize}
+\item \textbf{Áncora}:Espacio abierto a la comunidad para desarrollo de proyectos y como punto de encuentro social de coworking.
+\item \textbf{M25 Arquitectos}:Arquitectos que participan y apoyan los proyectos de ValpoInterviene.
+\item \textbf{Patio Volantín}:Lugar de vinculación con el Cerro Panteón y sitio de intercambio material e inmaterial(Trueque por servicio).
+\item \textbf{Sembrando Comunidad} :Una iniciativa de Patio Volantín que buscaba crear huertos, jardines y bosques comestibles en la cuenca san juan de dios de forma sostenible y sustentable.
+\end{itemize}
+Volveremos a mencionar a los colaboradores en el Modelo Canvas.\\
+A continuación desarrollamos el Modelo de negocios tipo canvas junto con la cadena de valor de esta ONG.
+
+\section*{Modelo Canvas de Valpointerviene}
+\begin{itemize}
+\item Socios Clave 
+\begin{itemize}
+\item Áncora, M25, Sembrando Comunidad, Patio Volantín, Trafón.
+\end{itemize}
+\item Actividades Clave
+\begin{itemize}
+\item Eco-Asesorías.
+\item Iniciativas Sociales centradas en el medio ambiente.
+\item Talleres de Vermicompostaje.
+\item Reparaciones de lugares públicos mediante reciclaje.
+\end{itemize}
+\item Recursos Clave
+\begin{itemize}
+\item Residuos Reciclables.
+\item Personal encargado de los puntos de reciclaje.
+\item Equipamiento para traslado .
+\item Usuarios que provean la materia prima(Residuos reciclables).
+\end{itemize}
+\item Propuestas Sociales
+\begin{itemize}
+\item Aportar a la limpieza de la ciudad y el compromiso con el medio ambiente.
+\item Inculcar responsabilidad medioambiental y respeto por el entorno.
+\item Ayudamos a la ciudad mediante recuperación de espacios.
+\end{itemize}
+\item Relaciones con colaboradores
+\begin{itemize}
+\item Instar a los colaboradores a participar de las propuestas de la organización junto con una cuota de compromiso de ellos.
+\end{itemize}
+\item Canales de comunicación
+\begin{itemize}
+\item Juntas de vecinos informativas.
+\item Actividades formativas.
+\item Redes Sociales (Facebook \& Twitter)
+\end{itemize}
+\item Colaboradores
+\begin{itemize}
+\item Usuarios desinteresados que gustan de ayudar con la mision de ValpoInterviene
+\item Suministran material reciclable.
+\item Ayudan a la difusión de las publicaciones de ValpoInterviene.
+\end{itemize}
+\item Costos
+\begin{itemize}
+\item Gestion de  ValpoInterviene, junto con los recursos para concretar las propuestas, y el tiempo de los colaboradores y voluntarios ligados a la organización.
+\end{itemize}
+\end{itemize} 
+\section*{Cadena de Valor}
+\subsection*{Actividades Primarias}
+\begin{itemize}
+\item Recolección de residuos.
+\item Renovación y limpieza de espacios públicos.
+\item Insentivar el cuidado al medio ambiente por redes sociales.
+\item Talleres instructivos.
+\item Econegocios (destinado a hostales)
+\end{itemize}
+\subsection*{Actividades de Soporte}
+\begin{itemize}
+\item Informar por su pagina web o redes sociales las actividades y fines de Valpointerviene.
+\item Inscripción de voluntarios.
+\item Juntas de vecinos informativas.
+\item Reporte del estado de los depositos.
+\end{itemize}
+
+Según los Modelos, Valpointerviene es una ONG encargada únicamente en recolección de residuos, renovación de espacios públicos y capacitación de la comunidad. Cumple un rol de proveedor para empresas encargadas en reciclar dichos residuos.\\
+
+El defecto está en el sistema de soporte de los depositos, que de momento es ineficaz debido a la tardanza y falta de información del estado de los depositos. Para este problema, PAC Solutions propone un Sistema de Información capaz resolver estos problemas.
+\section{Nuestra Propuesta}
+Nuestra propuesta comprende la implementación de un sistema de gestión de residuos domiciliarios y de empresas para ValpoInterviene. Este sistema de información sería implementado mediante una plataforma web, a la cual pueden acceder tanto miembros de la organización como colaboradores(juntas de vecinos y empresas de recoleccion) y usuarios. Las funcionalidades de la plataforma serán las siguientes:
+\begin{itemize}
+\item Para miembros de la organización, el control sobre la existencia(creación o eliminación) de los puntos de reciclaje. Capacidad de añadir nuevas juntas de vecinos y asignarles un punto de recolección.
+\item Para los colaboradores, la alternativa de ver cuales son los puntos de recolección que se encuentran llenos, y que tipo de material acumulan. Además una vista georeferenciada respecto a los puntos de recoleccion llenos agrupandolos para poder encontrar una via eficiente de recolección.
+\item Para todos los usuarios que visiten la plataforma estará disponible la opcion de ver un mapa con las organizaciones que reciclan, los puntos de recolección, poder organizar que tipo de material quieren reciclar y tener la capacidad de dar viar una solicitud como junta de vecinos para poder coordinarse con ValpoInterviene y tener un punto limpio local. Y la alternativa de poner a disposición un centro de reciclaje particular (casa de una persona o junta de vecinos) mediante un formulario. 
+\end{itemize}
+
+La plataforma que planteamos se basa en la colaboración ciudadana para poder hacer un sistema viable, confiable y durable en el tiempo. [ValpoIntaviso] oportuno sobre la desaparición de algun punto de recoleccion asimismo como si está lleno para facilitar su pronto vaciado.\\
+Tambien en el sector de usuarios estará la opcion de [enerviene] debe tener interacciones administrativas para gestionar el inventario de puntos limpios, centros informales y juntas de vecinos. Mientras que los colaboradores y empresas encargadas de recoger los contenedores podrán informarse del estado de estos en tiempo real (en base al apoyo ciudadano).\\
+
+
+
+
+%------------------------------------------------
+
+\subsubsection*{Estado Actual de la organización}
+Actualmente según nuestro punto de vista ValpoInterviene posee una pagina web informativa acerca de la organización misma, con información de las actividades realizadas y descripciones de sus actividades principales, junto con sus principios, misión y visión.
+Tiene una fuerte interacción en redes sociales en un grado más menos parecido en Facebook y Twitter, y dejando de lado por cierta parte YouTube.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

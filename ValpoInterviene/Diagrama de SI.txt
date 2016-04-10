@@ -1,0 +1,19 @@
+Diagrama de SI -- Valpo Interviene
+
+PA = Punto de Acopio
+EE = Empresa Encargada
+PI = Punto Informal
+PR = Punto de Reciclaje
+PC = Punto de Compra
+
+
+>Index (con links a las paginas siguientes + como ser usado el sitio)
+---> Mapa de PA,PR,PC,PI (Seleccionable? tipo) [FULL JS + maps api]
+---> Acceso solicitud de JJVV (Peticion por una cajita/campana)
+---> Submision de PI 
+---> Notificar Estado de PA (desaparicion, llenado, vaciado) (solo no relacionadas con JJVV)
+---> Acceso JJVV (notificar estado de su cajita/campana)
+---> Acceso de EE (Para ver el estado de sus PA)
+-------> Estado de PA de EE
+-------> Mapa radial [maps api] + Listado
+
