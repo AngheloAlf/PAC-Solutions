@@ -8,9 +8,10 @@
 
 ## Plataforma Web
 ### Hecho
-+ Nada
++ Tener Footer y Header (Header tiene un trozo de content que es la ventana principal)
 
 ### Por Hacer
++ Vincular los js y css a la carpeta que corresponde, que reconozca cssjs
 + Página de inscripción de JJVV
 + Página con un mapa placeholder
 + Diseños y cosas bonitas
