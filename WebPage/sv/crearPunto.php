@@ -13,7 +13,7 @@ if(isset($_POST["tipoPL"]) && isset($_POST["coorX"]) && isset($_POST["coorY"]) &
 		$error = true;
 		jsAlert("Error coordenada Y");
 	}
-	if(!preg_match("/^[a-zA-Z0-9, áéíóúÁÉÍÓÚñÑ]+$/", $_POST["direccion"])){
+	if(!preg_match("/^[a-zA-Z0-9, áéíóúÁÉÍÓÚñÑ-]+$/", $_POST["direccion"])){
 		$error = true;
 		jsAlert("Error de dirrecion");
 	}

@@ -83,3 +83,35 @@ function easter_eggImage(){
 	document.getElementById("easter_egg4").style.opacity = "0.7";
 	document.getElementById("easter_egg5").style.opacity = "0.7";
 }
+
+
+
+function initializePL(){
+	var mapProp = {center:myCenter, zoom:13, mapTypeId:google.maps.MapTypeId.ROADMAP};
+
+	map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+	google.maps.event.addListener(map, 'click', function(event){ placeMarkerPL(event.latLng); });
+}
+function placeMarkerPL(location){
+	if(typeof(marker) != 'undefined'){
+		marker.setMap(null);
+	}
+	marker = new google.maps.Marker({position: location, map: map,});
+	var latitud = location.lat();
+	var longitud = location.lng();
+	var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
+	document.getElementById('coorX').value = latitud;
+	document.getElementById("coordX").innerHTML = latitud;
+	document.getElementById('coorY').value = longitud;
+	document.getElementById("coordY").innerHTML = longitud;
+	$.getJSON(direccion, function(result){
+        var address = result.results[0].formatted_address;
+        document.getElementById('direccion').value = address;
+		document.getElementById("dir").innerHTML = address;
+    });
+}
+function mapaPuntoLimpio(){
+	myCenter=new google.maps.LatLng(-33.0430962,-71.6184219);
+	google.maps.event.addDomListener(window, 'load', initializePL);
+}

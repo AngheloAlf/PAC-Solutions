@@ -1,55 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script>document.title = "Crear Punto Limpio";</script>
 		<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
 			var map;
-			var myCenter=new google.maps.LatLng(-33.0430962,-71.6184219);
-
-			function initialize(){
-			var mapProp = {
-				center:myCenter,
-				zoom:13,
-				mapTypeId:google.maps.MapTypeId.ROADMAP
-				};
-
-				map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-				google.maps.event.addListener(map, 'click', function(event){
-					placeMarker(event.latLng);
-				});
-			}
+			var myCenter;
 			var marker;
-			var latitud;
-			var longitud;
-			var direccion;
-			function placeMarker(location){
-				if(typeof(marker) != 'undefined'){
-					marker.setMap(null);
-				}
-				marker = new google.maps.Marker({position: location, map: map,});
-				latitud = location.lat();
-				longitud = location.lng();
-				direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
-				//http://maps.googleapis.com/maps/api/geocode/json?latlng=44.4647452,7.3553838&sensor=true
-				document.getElementById('coorX').value = latitud;
-				document.getElementById("coordX").innerHTML = latitud;
-				document.getElementById('coorY').value = longitud;
-				document.getElementById("coordY").innerHTML = longitud;
-				//alert($.getJSON(direccion));
-				$.getJSON(direccion, function(result){
-		            var address = result.results[0].formatted_address;
-		            document.getElementById('direccion').value = address;
-					document.getElementById("dir").innerHTML = address;
-				
-		        });
-				/*var infowindow = new google.maps.InfoWindow({
-					content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-				});
-				infowindow.open(map,marker);*/
-			}
-
-			google.maps.event.addDomListener(window, 'load', initialize);
+			mapaPuntoLimpio();
 		</script>
 	</head>
 
