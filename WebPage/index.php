@@ -16,7 +16,7 @@ elseif(isset($_GET['page']) && !empty($_GET['page'])){
 	}
 }
 elseif(isset($_GET["s"]) && !empty($_GET['s'])){
-	$pagina = 'sv/'.$_GET['page'].'.php';
+	$pagina = 'sv/'.$_GET['s'].'.php';
 	if(file_exists($pagina)){
 		require ($pagina);
 	}
