@@ -145,6 +145,20 @@ function calcularPrioridad($notas, $creditos, $semestres, $cantRamos, $FAE){
 	return $wea;
 }
 
+function obtenerPuntosLimpios(){
+	require "sv/loginData.php";
+	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+	if(mysqli_connect_error()){
+		jsAlert("Ha ocurrido un problema al conectar la base de datos. Intentelo mas tarde.");
+		return false;
+	}
+	else{
+		$sql = "SELECT posx, posy FROM puntos_limpios";
+		$check = $dbconn->query($sql);
+		return $check->fetch_all(MYSQLI_NUM);
+	}
+}
+
 autoRedirect("common.php", "index.php");
 
 ?>

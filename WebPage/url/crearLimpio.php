@@ -4,9 +4,9 @@
 		<script>document.title = "Crear Punto Limpio";</script>
 		<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
-			var map;
-			var myCenter;
-			var marker;
+			var mapPL;
+			var myCenterPL;
+			var markerPL;
 			mapaPuntoLimpio();
 		</script>
 	</head>
@@ -17,9 +17,9 @@
 				<div class="col-md-12">
 					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 80%;padding: 00px;"';} ?> >
 						<div class="panel-heading">
-							<a data-toggle="collapse" href="#collapse">Creación de Punto Limpio</a>
+							<a data-toggle="collapse" href="#collapsePL">Creación de Punto Limpio</a>
 						</div>
-						<div id="collapse" class="panel-collapse in">
+						<div id="collapsePL" class="panel-collapse in">
 							<div class="panel-body">
 								<form action="?s=crearPunto" method="post">
 									<label>Tipo de Punto Limpio:</label>
@@ -30,7 +30,7 @@
 									</select>
 									<br>
 									<label>Ubicación:</label>
-									<div id="googleMap" style="width:500px;height:380px;"></div>
+									<div id="googleMapPL" style="width:640px;height:380px;"></div>
 									<br>
 
 									<label>Latitud:</label>

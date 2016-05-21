@@ -1,6 +1,6 @@
 function WIP(){
-    alert("WIP\nLa pagina esta en construccion");
-    return false;
+	alert("WIP\nLa pagina esta en construccion");
+	return false;
 }
 
 function digitoVerificador(sinGuion){ //Algoritmo para generar el digito verificador de el rut
@@ -84,20 +84,19 @@ function easter_eggImage(){
 	document.getElementById("easter_egg5").style.opacity = "0.7";
 }
 
-
-
+//Punto Limpio
 function initializePL(){
-	var mapProp = {center:myCenter, zoom:13, mapTypeId:google.maps.MapTypeId.ROADMAP};
+	var mapProp = {center:myCenterPL, zoom:14, mapTypeId:google.maps.MapTypeId.ROADMAP};
 
-	map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	mapPL = new google.maps.Map(document.getElementById("googleMapPL"),mapProp);
 
-	google.maps.event.addListener(map, 'click', function(event){ placeMarkerPL(event.latLng); });
+	google.maps.event.addListener(mapPL, 'click', function(event){ placeMarkerPL(event.latLng); });
 }
 function placeMarkerPL(location){
-	if(typeof(marker) != 'undefined'){
-		marker.setMap(null);
+	if(typeof(markerPL) != 'undefined'){
+		markerPL.setMap(null);
 	}
-	marker = new google.maps.Marker({position: location, map: map,});
+	markerPL = new google.maps.Marker({position: location, map: mapPL,});
 	var latitud = location.lat();
 	var longitud = location.lng();
 	var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
@@ -106,12 +105,69 @@ function placeMarkerPL(location){
 	document.getElementById('coorY').value = longitud;
 	document.getElementById("coordY").innerHTML = longitud;
 	$.getJSON(direccion, function(result){
-        var address = result.results[0].formatted_address;
-        document.getElementById('direccion').value = address;
+		var address = result.results[0].formatted_address;
+		document.getElementById('direccion').value = address;
 		document.getElementById("dir").innerHTML = address;
-    });
+	});
 }
 function mapaPuntoLimpio(){
-	myCenter=new google.maps.LatLng(-33.0430962,-71.6184219);
+	myCenterPL = new google.maps.LatLng(-33.0430962,-71.6184219);
 	google.maps.event.addDomListener(window, 'load', initializePL);
 }
+
+function actualizarSlider(){
+	document.getElementById("mostrarSlider").innerHTML = document.getElementById("slider").value+"%";
+}
+
+//Actualizar Punto Limpio
+function initializeActu(){
+	var mapProp = {center:myCenterActu, zoom:14, mapTypeId:google.maps.MapTypeId.ROADMAP};
+
+	mapActu = new google.maps.Map(document.getElementById("googleMapActu"),mapProp);
+
+	google.maps.event.addListener(mapActu, 'click', function(event){ selectMarkerActu(event.latLng); });
+
+	
+	var infowindows = [];
+	var infowindow;
+	var marcador;
+	for(var i = 0; i < (PuntosLimpios.length); i++){
+		console.log(PuntosLimpios[i]+" "+PuntosLimpios[i+1]);
+		marcador = new google.maps.Marker({position: {lat: parseFloat(PuntosLimpios[i]), lng: parseFloat(PuntosLimpios[i+1])}, map: mapActu,});
+		infowindow = new google.maps.InfoWindow({content:"Seleccionado!"});
+		markerActu.push(marcador);
+		infowindows.push(infowindow);
+		google.maps.event.addListener(markerActu[parseInt(i/2)], 'click', function(i){
+			return function(){
+				infowindows[parseInt(i/2)].open(mapActu, markerActu[parseInt(i/2)]);
+			}
+		}(i));
+		i++;
+	}
+
+
+}
+function selectMarkerActu(location){
+	/*if(typeof(markerActu) != 'undefined'){
+		markerActu.setMap(null);
+	}*/
+	//markerActu = new google.maps.Marker({position: location, map: mapActu,});
+	/*var latitud = location.lat();
+	var longitud = location.lng();
+	var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";*/
+	/*document.getElementById('coorX').value = latitud;
+	document.getElementById("coordX").innerHTML = latitud;
+	document.getElementById('coorY').value = longitud;
+	document.getElementById("coordY").innerHTML = longitud;*/
+	/*$.getJSON(direccion, function(result){*/
+		/*var address = result.results[0].formatted_address;
+		document.getElementById('direccion').value = address;
+		document.getElementById("dir").innerHTML = address;*/
+	/*});*/
+}
+function mapaActualizar(){
+	myCenterActu = new google.maps.LatLng(-33.0430962,-71.6184219);
+	google.maps.event.addDomListener(window, 'load', initializeActu);
+
+}
+
