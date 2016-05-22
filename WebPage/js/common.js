@@ -134,12 +134,23 @@ function initializeActu(){
 	for(var i = 0; i < (PuntosLimpios.length); i++){
 		console.log(PuntosLimpios[i]+" "+PuntosLimpios[i+1]);
 		marcador = new google.maps.Marker({position: {lat: parseFloat(PuntosLimpios[i]), lng: parseFloat(PuntosLimpios[i+1])}, map: mapActu,});
-		infowindow = new google.maps.InfoWindow({content:"Seleccionado!"});
+		infowindow = new google.maps.InfoWindow({content:"¡Seleccionado!"});
 		markerActu.push(marcador);
 		infowindows.push(infowindow);
 		google.maps.event.addListener(markerActu[parseInt(i/2)], 'click', function(i){
 			return function(){
+				for (var j = 0; j < infowindows.length; j++) {
+					infowindows[j].close();
+					markerActu[j].setAnimation(null);
+				}
+				markerActu[parseInt(i/2)].setAnimation(google.maps.Animation.BOUNCE);
 				infowindows[parseInt(i/2)].open(mapActu, markerActu[parseInt(i/2)]);
+				var latitud = markerActu[parseInt(i/2)].getPosition().lat();
+				var longitud = markerActu[parseInt(i/2)].getPosition().lng();
+				document.getElementById('coorX').value = latitud;
+				document.getElementById("coordX").innerHTML = latitud;
+				document.getElementById('coorY').value = longitud;
+				document.getElementById("coordY").innerHTML = longitud;
 			}
 		}(i));
 		i++;

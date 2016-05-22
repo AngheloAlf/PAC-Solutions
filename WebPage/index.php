@@ -2,6 +2,7 @@
 
 require ("sv/configPage.php");
 include ('url/head.php');
+include ('url/header.php');
 
 if(isset($_GET['wip']) && !empty($_GET['wip'])){
 	require ('url/wipPage.php');

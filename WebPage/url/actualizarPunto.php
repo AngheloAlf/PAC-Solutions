@@ -31,9 +31,17 @@
 						</div>
 						<div id="collapseActu" class="panel-collapse in">
 							<div class="panel-body">
-								<form action="" method="post">
+								<form action="?s=indicarEstadoPunto" method="post">
 									<label>Ubicación:</label>
 									<div id="googleMapActu" style="width:640px;height:380px;"></div>
+									
+									<label>Latitud:</label>
+									<p class="form-control" id="coordX"></p>
+									<input type="text" hidden="True" required="" class="form-control" id="coorX" name="coorX"/>
+									<label>Longitud:</label>
+									<p class="form-control" id="coordY"></p>
+									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
+									
 									<br>
 									<table>
 										<tr>

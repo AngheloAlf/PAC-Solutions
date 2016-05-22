@@ -6,6 +6,7 @@
 					<img src="resources/home-white.png" alt="Home" style="width:32;height:38;border:0">
 				</a>
 				<a href="?page=crearLimpio">Crear punto limpio</a>
+				<a href="?page=actualizarPunto">Indicar estado del punto limpio</a>
 				<a href="?page=verificador">Digito verificador</a>
 				<a href="?page=google">Google search</a>
 				<a href="?page=configuracion">Configuración</a>
