@@ -34,14 +34,14 @@
 								<form action="?s=indicarEstadoPunto" method="post">
 									<label>Ubicación:</label>
 									<div id="googleMapActu" style="width:640px;height:380px;"></div>
-									
+
 									<label>Latitud:</label>
 									<p class="form-control" id="coordX"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorX" name="coorX"/>
 									<label>Longitud:</label>
 									<p class="form-control" id="coordY"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
-									
+
 									<br>
 									<table>
 										<tr>
@@ -49,7 +49,7 @@
 											<td><input type="range" id="slider" name="slider" onchange="actualizarSlider()" onmousemove="actualizarSlider()" orient="vertical" min="0" max="100" value="0" /><p id="mostrarSlider">0%</p></td>
 										</tr>
 									</table>
-									
+
 									<br>
 									<button class="btn btn-primary">Crear</button>
 									<br>
@@ -62,4 +62,3 @@
 		</div>
 	</body>
 </html>
-

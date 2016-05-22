@@ -127,7 +127,7 @@ function initializeActu(){
 
 	google.maps.event.addListener(mapActu, 'click', function(event){ selectMarkerActu(event.latLng); });
 
-	
+
 	var infowindows = [];
 	var infowindow;
 	var marcador;
@@ -176,9 +176,41 @@ function selectMarkerActu(location){
 		document.getElementById("dir").innerHTML = address;*/
 	/*});*/
 }
+
+function madeMap(locations){
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 12,
+		center: new google.maps.LatLng(-33.0430962,-71.6184219),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	var infowindow = new google.maps.InfoWindow();
+
+	var marker, i;
+
+	for (i = 0; i < locations.length; i++) {
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+			map: map
+		});
+
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+				infowindow.setContent(locations[i][0]);
+				var nodeList = document.getElementsByName('rows');
+				for (var j = 0; j < nodeList.length; j++) {
+					nodeList[j].className="";
+				}
+				var row = document.getElementById(locations[i][3]);
+				row.className="success";
+				infowindow.open(map, marker);
+			}
+		})(marker, i));
+	}
+}
+
 function mapaActualizar(){
 	myCenterActu = new google.maps.LatLng(-33.0430962,-71.6184219);
 	google.maps.event.addDomListener(window, 'load', initializeActu);
 
 }
-

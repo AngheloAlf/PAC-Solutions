@@ -1,6 +1,7 @@
 <?php
 
 require "sv/common.php";
+require "sv_adodb5/common.php";
 require "sv/mdetect.php";
 
 $uagent_obj = new uagent_info();
