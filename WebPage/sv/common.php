@@ -11,7 +11,7 @@ function fechaADia($tiempo){
 	return $tiempo/(60*60*24);
 }
 function __getDateNTP(){
-	$socket = new Socket('ntp.shoa.cl', 123); 
+	$socket = new Socket('ntp.shoa.cl', 123);
 	$ntp = new Client($socket);
 	$time = $ntp->getTime();
 	foreach ($time as $key => $value) {
@@ -125,7 +125,7 @@ function calcularPrioridad($notas, $creditos, $semestres, $cantRamos, $FAE){
 	$notasXcreditos = 0;
 	$creditosAprobados = 0;
 	$creditosTotales = 0;
-	for($i=0; $i < intval($cantRamos); $i++){ 
+	for($i=0; $i < intval($cantRamos); $i++){
 		if(preg_match('/0*[s|S]0*/', $notas[$i])){
 			$creditosAprobados += intval($creditos[$i]);
 		}
