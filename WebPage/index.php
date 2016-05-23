@@ -27,7 +27,6 @@ elseif(isset($_GET["s"]) && !empty($_GET['s'])){
 	}
 	else{
 		$pagina = 'sv/'.$_GET['s'].'.php';
-		echo $_GET['s'] ;
 	}
 	if(file_exists($pagina)){
 		require ($pagina);

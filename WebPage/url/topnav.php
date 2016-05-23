@@ -9,9 +9,9 @@
 				<a href="?page=actualizarPunto">Indicar estado del punto limpio</a>
 				<a href="?page=admin">Login Admin</a>
 				<a href="?page=listaPuntos">Puntos Limpios</a>
-				<a href="?page=verificador">Digito verificador</a>
+				<!--<a href="?page=verificador">Digito verificador</a>
 				<a href="?page=google">Google search</a>
-				<a href="?page=configuracion">Configuración</a>
+				<a href="?page=configuracion">Configuración</a>-->
 			</div>
 		</div>
 	</div>

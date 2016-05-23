@@ -20,7 +20,7 @@ function __getDateNTP(){
 		}
 	}
 	return strtotime("1970-01-01 00:00:00");
-}
+}*/
 function obtenerAno(){
 	return date('Y', __getDateNTP());
 }
@@ -31,7 +31,7 @@ function obtenerDia(){
 	return date('d', __getDateNTP());
 }
 function obtenerFechaHora(){
-	return date('Y-m-d G:i:s', __getDateNTP());
+	//return date('Y-m-d G:i:s', __getDateNTP());
 	return date('Y-m-d G:i:s');
 }
 function convertirFechaUsuario($fecha){
@@ -43,7 +43,7 @@ function obtenerFechaHoraParaUsuario(){
 	return date("d/m/Y G:i:s", __getDateNTP());
 	return date('d/m/Y G:i:s');
 }
-*/
+
 
 function redireccionarA($Pagina){
 	echo '<html><meta http-equiv="refresh" content="0;URL='.$Pagina.'" /></html>';

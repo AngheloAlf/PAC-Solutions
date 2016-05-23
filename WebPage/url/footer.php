@@ -13,7 +13,7 @@ if(isset($_SESSION["logeado"]) && $_SESSION["logeado"]){
 	<div class="row-fluid">
 		<div class="panel w3-topnav w3-blue">
 			<div class="panel-heading">
-				<div class="text-right"><i>Created by Arufu Creations</i></div>
+				<div class="text-right"><i>Created by PAC Solutions</i></div>
 			</div>
 		</div>
 	</div>

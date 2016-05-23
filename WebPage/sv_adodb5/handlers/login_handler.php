@@ -1,4 +1,4 @@
-<?
+<?php
 require "sv_adodb5/config.php";
 $db = newAdoConnection($driver);
 $db->connect($SQLhost,$SQLusuario,$SQLpass,$SQLname);

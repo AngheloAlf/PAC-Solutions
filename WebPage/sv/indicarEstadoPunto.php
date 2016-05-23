@@ -23,11 +23,13 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["slider"]) &
 			$sql = "SELECT id from puntos_limpios WHERE posx = '{$_POST["coorX"]}' and posy = '{$_POST["coorY"]}'";
 			if($check = $dbconn->query($sql)){
 				$id = $check->fetch_row()[0];
-				$sql2 = "INSERT INTO estados_puntos_limpios(id_punto_limpio, estado) VALUES ('{$id}', '{$_POST["slider"]}')";
+				$fecha = obtenerFechaHora();
+				$sql2 = "INSERT INTO estados_puntos_limpios(id_punto_limpio, estado, fecha) VALUES ('{$id}', '{$_POST["slider"]}', '{$fecha}')";
 				if($dbconn->query($sql2)){
 					jsAlert("Datos añadidos satisfactoriamente.");
 				}
 				else{
+					jsAlert($dbconn->error);
 					jsAlert("Ha ocurrido un error al ingresar los datos.");
 				}
 			}

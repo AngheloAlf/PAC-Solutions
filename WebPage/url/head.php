@@ -29,7 +29,7 @@ require "sv/getJS.php";
 		<?php
 	}
 	?>
-	<title>Arufu Creations</title>
+	<title>Valpo Interviene</title>
 
 </head>
 

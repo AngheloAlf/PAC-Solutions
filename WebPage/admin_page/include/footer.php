@@ -3,7 +3,7 @@
 	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
 			<p class="navbar-text">
-				<i>Created by Arufu Creations</i>
+				<i>Created by PAC Solutions</i>
 			</p>
 		</div>
 	</div>

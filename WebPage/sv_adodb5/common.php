@@ -1,4 +1,4 @@
-<?
+<?php
 
 function puntosLimpios($param){
   require ("config.php");

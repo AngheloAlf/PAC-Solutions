@@ -32,7 +32,7 @@
 									<div id="map" style="width:640px;height:380px;"></div>
 									<br>
 								</form>
-								<?
+								<?php
 								if(isset($_SESSION["params"])){
 									$ubicaciones = puntosLimpios($_SESSION["params"]);
 									$tabla = '<div class="panel panel-info">
@@ -63,7 +63,7 @@
 			</div>
 		</div>
     <script >
-      <?
+      <?php
         if (isset($_SESSION["params"])) {
           unset($_SESSION["params"]);
           echo "var locations = [";
