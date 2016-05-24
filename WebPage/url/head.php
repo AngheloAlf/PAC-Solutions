@@ -9,6 +9,9 @@ $uagent_obj = new uagent_info();
 if(!isset($_SESSION["logeado"])){
 	$_SESSION["logeado"] = false;
 }
+if(isset($_SESSION["user_admin"])){
+	redireccionarA("admin_index.php?page=dashboard");
+}
 
 require "sv/getJS.php";
 

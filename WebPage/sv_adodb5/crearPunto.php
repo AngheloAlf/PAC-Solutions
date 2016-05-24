@@ -18,7 +18,7 @@ if(isset($_POST["tipoPL"]) && isset($_POST["coorX"]) && isset($_POST["coorY"]) &
 		jsAlert("Error de dirrecion");
 	}
 	if(!$error){
-		require "loginData.php";
+		require "config.php";
 		$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
 		if(mysqli_connect_error()){
 			jsAlert("Ha ocurrido un problema al conectar la base de datos. Intentelo mas tarde.");

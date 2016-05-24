@@ -14,13 +14,16 @@ if($db->isConnected()){
     }
     else {
       jsAlert("Contraseña Incorrecta!");
+      redireccionarA("?page=home");
     }
   }
   else{
     jsAlert("Usuario no Registrado!");
+    redireccionarA("?page=home");
   }
 }
 else{
   jsAlert("Error de conexion con el servidor, intentelo mas tarde");
+  redireccionarA("?page=home");
 }
 ?>
