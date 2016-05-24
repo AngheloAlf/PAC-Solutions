@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-05-24 00:12:00
+Date: 2016-05-24 15:53:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,13 +38,13 @@ INSERT INTO `admin` VALUES ('9393265-k', 'Eduardo', '67613043', 'correo@correo.c
 -- ----------------------------
 DROP TABLE IF EXISTS `empresas`;
 CREATE TABLE `empresas` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `telefono` varchar(15) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `posx` double NOT NULL,
   `posy` double NOT NULL,
-  `tipo` varchar(1) NOT NULL,
+  `tipo` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,9 +61,7 @@ CREATE TABLE `empresas_puntos` (
   `idpunto` int(11) NOT NULL,
   PRIMARY KEY (`idempresa`,`idpunto`),
   KEY `fk_EMPRESAS_has_PUNTOS_ACOPIO_PUNTOS_ACOPIO1_idx` (`idpunto`),
-  KEY `fk_EMPRESAS_has_PUNTOS_ACOPIO_EMPRESAS1_idx` (`idempresa`),
-  CONSTRAINT `fk_EMPRESAS_has_PUNTOS_ACOPIO_EMPRESAS1` FOREIGN KEY (`idempresa`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_EMPRESAS_has_PUNTOS_ACOPIO_PUNTOS_ACOPIO1` FOREIGN KEY (`idpunto`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_EMPRESAS_has_PUNTOS_ACOPIO_EMPRESAS1_idx` (`idempresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -81,20 +79,21 @@ CREATE TABLE `estados_puntos_limpios` (
   `estado` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of estados_puntos_limpios
 -- ----------------------------
 INSERT INTO `estados_puntos_limpios` VALUES ('1', '11', '0', '58', '0000-00-00 00:00:00');
 INSERT INTO `estados_puntos_limpios` VALUES ('2', '11', '0', '61', '2016-05-23 13:13:10');
+INSERT INTO `estados_puntos_limpios` VALUES ('3', '13', '0', '83', '2016-05-24 15:47:57');
 
 -- ----------------------------
 -- Table structure for juntas_vecinos
 -- ----------------------------
 DROP TABLE IF EXISTS `juntas_vecinos`;
 CREATE TABLE `juntas_vecinos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `idpunto` int(11) NOT NULL,
@@ -153,7 +152,7 @@ INSERT INTO `puntos_limpios` VALUES ('14', 'Los Placeres 399, ValparaÃ­so, Val
 -- ----------------------------
 DROP TABLE IF EXISTS `recicladores`;
 CREATE TABLE `recicladores` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
