@@ -4,6 +4,15 @@
 		<script>document.title = "Crear Punto Limpio";</script>
 		<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
+			<?php
+				$arreglo = array();
+				foreach(obtenerPuntosLimpios() as $key => $value){
+					array_push($arreglo, '"'.implode('", "', $value).'"');
+				}
+				echo "var PuntosLimpios = [";
+				echo implode(", ", $arreglo);
+				echo "];";
+			?>
 			var mapPL;
 			var myCenterPL;
 			var markerPL;

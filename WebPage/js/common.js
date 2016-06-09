@@ -91,6 +91,44 @@ function initializePL(){
 	mapPL = new google.maps.Map(document.getElementById("googleMapPL"),mapProp);
 
 	google.maps.event.addListener(mapPL, 'click', function(event){ placeMarkerPL(event.latLng); });
+
+	var marcador;
+	var infowindows = [];
+	var markerActu = [];
+	for(var i = 0; i < (PuntosLimpios.length); i++){
+		console.log(PuntosLimpios[i]+" "+PuntosLimpios[i+1]);
+		marcador = new google.maps.Marker({position: {lat: parseFloat(PuntosLimpios[i]), lng: parseFloat(PuntosLimpios[i+1])}, map: mapPL,icon:"resources/pinkball.png",});		
+		infowindow = new google.maps.InfoWindow({content:PuntosLimpios[i+2]});
+		markerActu.push(marcador);
+		infowindows.push(infowindow);
+		google.maps.event.addListener(markerActu[parseInt(i/3)], 'click', function(k){
+			return function(){
+				for (var j = 0; j < infowindows.length; j++) {
+					infowindows[j].close();
+					//markerActu[j].setAnimation(null);
+				}
+				//markerActu[k].setAnimation(google.maps.Animation.BOUNCE);
+				infowindows[k].open(mapPL, markerActu[k]);
+
+				/*var latitud = markerActu[k].getPosition().lat();
+				var longitud = markerActu[k].getPosition().lng();
+				document.getElementById('coorX').value = latitud;
+				document.getElementById("coordX").innerHTML = latitud;
+				document.getElementById('coorY').value = longitud;
+				document.getElementById("coordY").innerHTML = longitud;
+
+				var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
+				console.log(direccion);
+				$.getJSON(direccion, function(result){
+					var address = result.results[0].formatted_address;
+					document.getElementById("dir").innerHTML = address;
+				});*/
+				
+			}
+		}(parseInt(i/3)));
+		i++;
+		i++;
+	}
 }
 function placeMarkerPL(location){
 	if(typeof(markerPL) != 'undefined'){
@@ -126,7 +164,6 @@ function initializeActu(){
 	mapActu = new google.maps.Map(document.getElementById("googleMapActu"),mapProp);
 
 	google.maps.event.addListener(mapActu, 'click', function(event){ selectMarkerActu(event.latLng); });
-
 
 	var infowindows = [];
 	var infowindow;
