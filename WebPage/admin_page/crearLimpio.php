@@ -11,11 +11,11 @@
 		</script>
 	</head>
 
-	<body style="background-color:gainsboro">
+	<body style="background-color:gainsboro" onresize="resizeGoogleMap('googleMapPL', 'collapsePL')">
 		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
 			<div class="row-fluid">
 				<div class="col-md-12">
-					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 80%;padding: 00px;"';} ?> >
+					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 95%;padding: 00px;"';} ?> >
 						<div class="panel-heading">
 							<a data-toggle="collapse" href="#collapsePL">Creación de Punto Limpio</a>
 						</div>
@@ -30,8 +30,13 @@
 									</select>
 									<br>
 									<label>Ubicación:</label>
-									<div id="googleMapPL" style="width:640px;height:380px;"></div>
+									<div id="googleMapPL" name="googleMap" style="width:640px;height:380px;"></div>
 									<br>
+
+									<label>Dirección:</label>
+									<p class="form-control" id="dir"></p>
+									<input type="text" hidden="True" required="" class="form-control" id="direccion" name="direccion"/>
+									
 
 									<label>Latitud:</label>
 									<p class="form-control" id="coordX"></p>
@@ -39,10 +44,6 @@
 									<label>Longitud:</label>
 									<p class="form-control" id="coordY"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
-									<label>Dirección:</label>
-									<p class="form-control" id="dir"></p>
-									<input type="text" hidden="True" required="" class="form-control" id="direccion" name="direccion"/>
-									
 
 									<br>
 									<button class="btn btn-primary">Crear</button>
@@ -54,5 +55,8 @@
 				</div>
 			</div>
 		</div>
+		<br>
+		<br>
 	</body>
+	<script>resizeGoogleMap('googleMapPL', 'collapsePL')</script>
 </html>

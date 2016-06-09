@@ -21,11 +21,11 @@
 		</script>
 	</head>
 
-	<body style="background-color:gainsboro">
-		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
+	<body style="background-color:gainsboro" onresize="resizeGoogleMap('googleMapActu', 'collapseActu')">
+		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%;"';} ?> >
 			<div class="row-fluid">
 				<div class="col-md-12">
-					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 80%;padding: 00px;"';} ?> >
+					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 88%;padding: 00px;"';} ?> >
 						<div class="panel-heading">
 							<a data-toggle="collapse" href="#collapseActu">Actualizacion de estado de Punto Limpio</a>
 						</div>
@@ -34,6 +34,10 @@
 								<form action="?s=indicarEstadoPunto" method="post">
 									<label>Ubicación:</label>
 									<div id="googleMapActu" style="width:640px;height:380px;"></div>
+
+									<label>Dirección:</label>
+									<p class="form-control" id="dir"></p>
+									<br>
 
 									<label>Latitud:</label>
 									<p class="form-control" id="coordX"></p>
@@ -51,7 +55,10 @@
 									</table>
 
 									<br>
-									<button class="btn btn-primary">Crear</button>
+									<br>
+									<div style="text-align:right; width: 90%;font-style:italic;">
+										<button class="btn btn-primary">Actualizar</button>
+									</div>
 									<br>
 								</form>
 							</div>
@@ -61,4 +68,5 @@
 			</div>
 		</div>
 	</body>
+	<script>resizeGoogleMap('googleMapActu', 'collapseActu')</script>
 </html>

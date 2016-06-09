@@ -153,7 +153,7 @@ function obtenerPuntosLimpios(){
 		return false;
 	}
 	else{
-		$sql = "SELECT posx, posy FROM puntos_limpios";
+		$sql = "SELECT posx, posy, tipo FROM puntos_limpios";
 		$check = $dbconn->query($sql);
 		return $check->fetch_all(MYSQLI_NUM);
 	}

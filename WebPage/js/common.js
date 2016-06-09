@@ -134,28 +134,37 @@ function initializeActu(){
 	for(var i = 0; i < (PuntosLimpios.length); i++){
 		console.log(PuntosLimpios[i]+" "+PuntosLimpios[i+1]);
 		marcador = new google.maps.Marker({position: {lat: parseFloat(PuntosLimpios[i]), lng: parseFloat(PuntosLimpios[i+1])}, map: mapActu,});
-		infowindow = new google.maps.InfoWindow({content:"¡Seleccionado!"});
+		infowindow = new google.maps.InfoWindow({content:PuntosLimpios[i+2]});
 		markerActu.push(marcador);
 		infowindows.push(infowindow);
-		google.maps.event.addListener(markerActu[parseInt(i/2)], 'click', function(i){
+		google.maps.event.addListener(markerActu[parseInt(i/3)], 'click', function(k){
 			return function(){
 				for (var j = 0; j < infowindows.length; j++) {
 					infowindows[j].close();
 					markerActu[j].setAnimation(null);
 				}
-				markerActu[parseInt(i/2)].setAnimation(google.maps.Animation.BOUNCE);
-				infowindows[parseInt(i/2)].open(mapActu, markerActu[parseInt(i/2)]);
-				var latitud = markerActu[parseInt(i/2)].getPosition().lat();
-				var longitud = markerActu[parseInt(i/2)].getPosition().lng();
+				markerActu[k].setAnimation(google.maps.Animation.BOUNCE);
+				infowindows[k].open(mapActu, markerActu[k]);
+
+				var latitud = markerActu[k].getPosition().lat();
+				var longitud = markerActu[k].getPosition().lng();
 				document.getElementById('coorX').value = latitud;
 				document.getElementById("coordX").innerHTML = latitud;
 				document.getElementById('coorY').value = longitud;
 				document.getElementById("coordY").innerHTML = longitud;
+
+				var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
+				console.log(direccion);
+				$.getJSON(direccion, function(result){
+					var address = result.results[0].formatted_address;
+					document.getElementById("dir").innerHTML = address;
+				});
+				
 			}
-		}(i));
+		}(parseInt(i/3)));
+		i++;
 		i++;
 	}
-
 
 }
 function selectMarkerActu(location){
@@ -213,4 +222,9 @@ function mapaActualizar(){
 	myCenterActu = new google.maps.LatLng(-33.0430962,-71.6184219);
 	google.maps.event.addDomListener(window, 'load', initializeActu);
 
+}
+
+function resizeGoogleMap(idGoogle, idDiv){
+	var ancho = document.getElementById(idDiv).offsetWidth - 30;
+	document.getElementById(idGoogle).style.width = ancho;
 }

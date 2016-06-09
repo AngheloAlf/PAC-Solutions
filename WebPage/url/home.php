@@ -10,21 +10,21 @@
 						</div>
 						<div id="collapseHome" class="panel-collapse in">
 							<div class="panel-body">
-								<h2><p style="text-align: center;">Bienvenido a Arufu Home Page</p></h2>
+								<h2><p style="text-align: center;">Bienvenido a <i>Prototipo</i></p></h2>
 								<p style="text-align: center;">Desplácese por el navegador superior.</p>
-								<?php
+								<!--<?php
 								if($permiteCuentas && !$_SESSION["logeado"]){
 									?>
 									<p style="text-align: center;">No es necesario tener una cuenta para usar esta pagina.</p>
 									<?php
 								}
-								?>
+								?>-->
 							</div>
 						</div>
 					</div>
 					<br>
 				</div>
-				<?php
+				<!--<?php
 				if($permiteCuentas && ((isset($_SESSION["logeado"]) && !$_SESSION["logeado"]) || !isset($_SESSION["logeado"]))){
 					?>
 					<div class="col-md-6">
@@ -125,7 +125,7 @@
 					</div>
 					<?php
 				}
-				?>
+				?>-->
 
 			</div>
 		</div>
