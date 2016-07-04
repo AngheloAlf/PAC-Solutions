@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-07-03 23:30:50
+Date: 2016-07-04 00:23:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -182,10 +182,12 @@ CREATE TABLE `solicitud_juntas_vecinos` (
   `direccion` varchar(255) NOT NULL,
   `posx` double NOT NULL,
   `posy` double NOT NULL,
+  `fecha` timestamp NOT NULL,
+  `mostrar` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_soli`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of solicitud_juntas_vecinos
 -- ----------------------------
-INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '0000-00-00 00:00:00', '1');

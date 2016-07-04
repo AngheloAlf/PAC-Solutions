@@ -268,11 +268,11 @@ function resizeGoogleMap(idGoogle, idDiv){
 
 //Solicitar Junta Vecinos
 function initializeSoli(){
-	var mapProp = {center:myCenterPL, zoom:14, mapTypeId:google.maps.MapTypeId.ROADMAP};
+	var mapProp = {center:myCenterSoli, zoom:14, mapTypeId:google.maps.MapTypeId.ROADMAP};
 
-	mapPL = new google.maps.Map(document.getElementById("googleMapSoli"),mapProp);
+	mapSoli = new google.maps.Map(document.getElementById("googleMapSoli"),mapProp);
 
-	google.maps.event.addListener(mapPL, 'click', function(event){ placeMarkerSoli(event.latLng); });
+	google.maps.event.addListener(mapSoli, 'click', function(event){ placeMarkerSoli(event.latLng); });
 }
 function placeMarkerSoli(location){
 	if(typeof(markerSoli) != 'undefined'){
@@ -295,6 +295,60 @@ function placeMarkerSoli(location){
 	});
 }
 function mapaSolicitud(){
-	myCenterPL = new google.maps.LatLng(-33.0430962,-71.6184219);
+	myCenterSoli = new google.maps.LatLng(-33.0430962,-71.6184219);
 	google.maps.event.addDomListener(window, 'load', initializeSoli);
+}
+
+//Ver solicitudes juntas vecinos
+function initializeVer(){
+	var mapProp = {center:myCenterVer, zoom:14, mapTypeId:google.maps.MapTypeId.ROADMAP};
+
+	mapVer = new google.maps.Map(document.getElementById("googleMapVer"),mapProp);
+
+	google.maps.event.addListener(mapVer, 'click', function(event){ placeMarkerVer(event.latLng); });
+
+	var marcador;
+	var infowindows = [];
+	var markerActu = [];
+	for(var i = 0; i < (PuntosLimpios.length); i++){
+		console.log(PuntosLimpios[i]+" "+PuntosLimpios[i+1]);
+		marcador = new google.maps.Marker({position: {lat: parseFloat(PuntosLimpios[i]), lng: parseFloat(PuntosLimpios[i+1])}, map: mapVer,});
+		infowindow = new google.maps.InfoWindow({content:PuntosLimpios[i+2]});
+		markerActu.push(marcador);
+		infowindows.push(infowindow);
+		google.maps.event.addListener(markerActu[parseInt(i/3)], 'click', function(k){
+			return function(){
+				for (var j = 0; j < infowindows.length; j++) {
+					infowindows[j].close();
+					markerActu[j].setAnimation(null);
+				}
+				markerActu[k].setAnimation(google.maps.Animation.BOUNCE);
+				infowindows[k].open(mapVer, markerActu[k]);
+
+				var latitud = markerActu[k].getPosition().lat();
+				var longitud = markerActu[k].getPosition().lng();
+				document.getElementById('coorX').value = latitud;
+				document.getElementById("coordX").innerHTML = latitud;
+				document.getElementById('coorY').value = longitud;
+				document.getElementById("coordY").innerHTML = longitud;
+
+				var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
+				console.log(direccion);
+				$.getJSON(direccion, function(result){
+					var address = result.results[0].formatted_address;
+					document.getElementById("dir").innerHTML = address;
+					document.getElementById("direccion").value = address;
+				});
+				
+			}
+		}(parseInt(i/3)));
+		i++;
+		i++;
+	}
+}
+function placeMarkerVer(location){
+}
+function mapaVerSoli(){
+	myCenterVer = new google.maps.LatLng(-33.0430962,-71.6184219);
+	google.maps.event.addDomListener(window, 'load', initializeVer);
 }

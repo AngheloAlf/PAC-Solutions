@@ -26,7 +26,8 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["nombreJunta
 					jsAlert("Ya existe una solicitud de esta junta de vecinos.");
 				}
 				else{
-					$sql = "INSERT INTO solicitud_juntas_vecinos(nombre, direccion, posx, posy) VALUES ('{$_POST["nombreJunta"]}', '{$_POST["direccion"]}', '{$_POST["coorX"]}', '{$_POST["coorY"]}')";
+					$fecha = obtenerFechaHora();
+					$sql = "INSERT INTO solicitud_juntas_vecinos(nombre, direccion, posx, posy, fecha) VALUES ('{$_POST["nombreJunta"]}', '{$_POST["direccion"]}', '{$_POST["coorX"]}', '{$_POST["coorY"]}', '{$fecha}')";
 					if($dbconn->query($sql)){
 						jsAlert("Datos añadidos satisfactoriamente.");
 					}

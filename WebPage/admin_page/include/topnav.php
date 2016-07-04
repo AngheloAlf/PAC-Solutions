@@ -39,6 +39,7 @@
       <ul class="nav navbar-nav">
         <!--<li><a href="inscrip_curso.php">Inscribir Cursos</a></li>-->
         <li class="active"><a href="admin_index.php?page=crearLimpio">Creacion de punto limpio<span class="sr-only">(current)</span></a></li>
+        <li><a href="admin_index.php?page=verSolicitudes">Ver solicitudes de juntas de vecinos</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="?s=logOut">Salir</a></li>
