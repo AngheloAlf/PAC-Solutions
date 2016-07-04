@@ -24,26 +24,18 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["slider"]) &
 			if($check = $dbconn->query($sql)){
 				$id = $check->fetch_row()[0];
 				$fecha = obtenerFechaHora();
-				$sql2 = "INSERT INTO estados_puntos_limpios(id_punto_limpio, estado, fecha) VALUES ('{$id}', '{$_POST["slider"]}', '{$fecha}')";
+				$sql2 = "INSERT INTO estados_puntos_limpios(puntos_limpios_id, estado, fecha) VALUES ('{$id}', '{$_POST["slider"]}', '{$fecha}')";
 				if($dbconn->query($sql2)){
 					jsAlert("Datos añadidos satisfactoriamente.");
 				}
 				else{
-					jsAlert($dbconn->error);
+					//jsAlert($dbconn->error);
 					jsAlert("Ha ocurrido un error al ingresar los datos.");
 				}
 			}
 			else{
 				jsAlert("Ha ocurrido un error al acceder a los datos.");
 			}
-			/*$sql = "INSERT INTO puntos_limpios(direccion, tipo, estado, posx, posy) VALUES ('{$_POST["direccion"]}', '{$_POST["tipoPL"]}', '0', '{$_POST["coorX"]}', '{$_POST["coorY"]}')";
-			$check = $dbconn->query($sql);
-			if($check){
-				jsAlert("Datos añadidos satisfactoriamente.");
-			}
-			else{
-				jsAlert("Ha ocurrido un error al intentar agregar los datos.");
-			}*/
 		}
 	}
 }

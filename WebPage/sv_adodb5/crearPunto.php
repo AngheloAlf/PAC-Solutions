@@ -24,12 +24,13 @@ if(isset($_POST["tipoPL"]) && isset($_POST["coorX"]) && isset($_POST["coorY"]) &
 			jsAlert("Ha ocurrido un problema al conectar la base de datos. Intentelo mas tarde.");
 		}
 		else{
-			$sql = "INSERT INTO puntos_limpios(tipo, direccion, estado, posx, posy) VALUES ('{$_POST["tipoPL"]}', '{$_POST["direccion"]}', '0', '{$_POST["coorX"]}', '{$_POST["coorY"]}')";
+			$sql = "INSERT INTO puntos_limpios(tipo, direccion, estado_pl, posx, posy) VALUES ('{$_POST["tipoPL"]}', '{$_POST["direccion"]}', '0', '{$_POST["coorX"]}', '{$_POST["coorY"]}')";
 			$check = $dbconn->query($sql);
 			if($check){
 				jsAlert("Datos añadidos satisfactoriamente.");
 			}
 			else{
+				jsAlert($dbconn->error);
 				jsAlert("Ha ocurrido un error al intentar agregar los datos.");
 			}
 		}

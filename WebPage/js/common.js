@@ -278,7 +278,7 @@ function placeMarkerSoli(location){
 	if(typeof(markerSoli) != 'undefined'){
 		markerSoli.setMap(null);
 	}
-	markerSoli = new google.maps.Marker({position: location, map: mapPL,});
+	markerSoli = new google.maps.Marker({position: location, map: mapSoli,});
 	var latitud = location.lat();
 	var longitud = location.lng();
 	var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";

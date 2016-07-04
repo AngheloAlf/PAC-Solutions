@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-07-04 00:23:39
+Date: 2016-07-04 18:13:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,10 +42,10 @@ CREATE TABLE `empresas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `telefono` varchar(15) NOT NULL,
-  `direccion` varchar(45) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
   `posx` double NOT NULL,
   `posy` double NOT NULL,
-  `tipo` varchar(25) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,11 +58,13 @@ CREATE TABLE `empresas` (
 -- ----------------------------
 DROP TABLE IF EXISTS `empresas_puntos`;
 CREATE TABLE `empresas_puntos` (
-  `idempresa` int(11) NOT NULL,
-  `idpunto` int(11) NOT NULL,
-  PRIMARY KEY (`idempresa`,`idpunto`),
-  KEY `fk_EMPRESAS_has_PUNTOS_ACOPIO_PUNTOS_ACOPIO1_idx` (`idpunto`),
-  KEY `fk_EMPRESAS_has_PUNTOS_ACOPIO_EMPRESAS1_idx` (`idempresa`)
+  `empresas_id` int(11) NOT NULL,
+  `puntos_limpios_id` int(11) NOT NULL,
+  PRIMARY KEY (`empresas_id`,`puntos_limpios_id`),
+  KEY `fk_empresas_puntos_empresas1_idx` (`empresas_id`),
+  KEY `fk_empresas_puntos_puntos_limpios1_idx` (`puntos_limpios_id`),
+  CONSTRAINT `fk_empresas_puntos_empresas1` FOREIGN KEY (`empresas_id`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_empresas_puntos_puntos_limpios1` FOREIGN KEY (`puntos_limpios_id`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -75,22 +77,41 @@ CREATE TABLE `empresas_puntos` (
 DROP TABLE IF EXISTS `estados_puntos_limpios`;
 CREATE TABLE `estados_puntos_limpios` (
   `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `id_punto_limpio` int(11) NOT NULL,
+  `puntos_limpios_id` int(11) NOT NULL,
   `vaciado` tinyint(4) NOT NULL DEFAULT '0',
   `estado` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `fecha` timestamp NOT NULL,
+  PRIMARY KEY (`id_estado`,`puntos_limpios_id`),
+  KEY `fk_estados_puntos_limpios_puntos_limpios1_idx` (`puntos_limpios_id`),
+  CONSTRAINT `fk_estados_puntos_limpios_puntos_limpios1` FOREIGN KEY (`puntos_limpios_id`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of estados_puntos_limpios
 -- ----------------------------
-INSERT INTO `estados_puntos_limpios` VALUES ('1', '11', '0', '58', '0000-00-00 00:00:00');
+INSERT INTO `estados_puntos_limpios` VALUES ('1', '11', '0', '58', '2016-04-20 14:00:00');
 INSERT INTO `estados_puntos_limpios` VALUES ('2', '11', '0', '61', '2016-05-23 13:13:10');
-INSERT INTO `estados_puntos_limpios` VALUES ('3', '13', '0', '83', '2016-05-24 15:47:57');
-INSERT INTO `estados_puntos_limpios` VALUES ('4', '10', '0', '62', '2016-06-01 12:10:12');
-INSERT INTO `estados_puntos_limpios` VALUES ('5', '18', '0', '37', '2016-06-09 11:15:04');
-INSERT INTO `estados_puntos_limpios` VALUES ('6', '18', '0', '38', '2016-07-03 21:42:30');
+INSERT INTO `estados_puntos_limpios` VALUES ('3', '11', '0', '70', '2016-05-24 13:13:10');
+INSERT INTO `estados_puntos_limpios` VALUES ('4', '11', '0', '65', '2016-05-24 15:13:10');
+INSERT INTO `estados_puntos_limpios` VALUES ('5', '13', '0', '83', '2016-05-24 09:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('6', '13', '0', '83', '2016-05-25 10:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('7', '13', '0', '83', '2016-05-25 11:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('8', '13', '0', '83', '2016-05-25 12:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('9', '13', '0', '0', '2016-05-25 13:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('10', '13', '0', '2', '2016-05-25 14:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('11', '11', '0', '10', '2016-05-25 15:10:10');
+INSERT INTO `estados_puntos_limpios` VALUES ('12', '11', '0', '30', '2016-05-25 16:13:10');
+INSERT INTO `estados_puntos_limpios` VALUES ('13', '10', '0', '62', '2016-06-01 12:10:12');
+INSERT INTO `estados_puntos_limpios` VALUES ('14', '13', '0', '46', '2016-06-01 13:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('15', '13', '0', '68', '2016-06-01 14:37:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('16', '13', '0', '50', '2016-06-01 15:27:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('17', '18', '0', '70', '2016-06-09 11:15:04');
+INSERT INTO `estados_puntos_limpios` VALUES ('18', '13', '0', '80', '2016-06-10 08:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('19', '13', '0', '85', '2016-06-10 10:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('20', '13', '0', '87', '2016-06-10 11:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('21', '13', '0', '3', '2016-06-10 14:47:57');
+INSERT INTO `estados_puntos_limpios` VALUES ('22', '11', '0', '2', '2016-06-24 23:13:10');
+INSERT INTO `estados_puntos_limpios` VALUES ('23', '17', '0', '100', '2016-07-04 17:38:46');
 
 -- ----------------------------
 -- Table structure for `juntas_vecinos`
@@ -116,12 +137,16 @@ CREATE TABLE `juntas_vecinos` (
 DROP TABLE IF EXISTS `postulaciones_puntos_limpios`;
 CREATE TABLE `postulaciones_puntos_limpios` (
   `id_postulacion` int(11) NOT NULL AUTO_INCREMENT,
-  `posx` varchar(255) NOT NULL,
-  `posy` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `revisado` tinyint(1) NOT NULL DEFAULT '0',
-  `aceptado` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id_postulacion`)
+  `direccion` varchar(255) NOT NULL,
+  `posx` double NOT NULL,
+  `posy` double NOT NULL,
+  `revisado` tinyint(1) NOT NULL,
+  `aceptado` tinyint(1) NOT NULL,
+  `juntas_vecinos_id` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL,
+  PRIMARY KEY (`id_postulacion`,`juntas_vecinos_id`),
+  KEY `fk_postulaciones_puntos_limpios_juntas_vecinos1_idx` (`juntas_vecinos_id`),
+  CONSTRAINT `fk_postulaciones_puntos_limpios_juntas_vecinos1` FOREIGN KEY (`juntas_vecinos_id`) REFERENCES `juntas_vecinos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -136,11 +161,11 @@ CREATE TABLE `puntos_limpios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `direccion` varchar(255) NOT NULL,
   `tipo` varchar(63) NOT NULL,
-  `estado` tinyint(4) NOT NULL,
+  `estado_pl` tinyint(4) NOT NULL,
   `posx` double NOT NULL,
   `posy` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of puntos_limpios
@@ -153,6 +178,7 @@ INSERT INTO `puntos_limpios` VALUES ('14', 'Los Placeres 399, ValparaÃ­so, Val
 INSERT INTO `puntos_limpios` VALUES ('15', 'Edwards 150, ValparaÃ­so, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Botellas', '0', '-33.04464445243333', '-71.61889538168907');
 INSERT INTO `puntos_limpios` VALUES ('17', 'Javiera Carrera 426-504, ValparaÃ­so, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Botellas', '0', '-33.03795310629821', '-71.59065037965775');
 INSERT INTO `puntos_limpios` VALUES ('18', 'Guillermo Munnich 339, ValparaÃ­so, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Latas', '0', '-33.04687478818968', '-71.63373738527298');
+INSERT INTO `puntos_limpios` VALUES ('19', 'Blanco Viel 415, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Botellas', '0', '-33.04119091789752', '-71.60146504640579');
 
 -- ----------------------------
 -- Table structure for `recicladores`
@@ -161,15 +187,32 @@ DROP TABLE IF EXISTS `recicladores`;
 CREATE TABLE `recicladores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `descripcion` varchar(50) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `posx` double NOT NULL,
   `posy` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of recicladores
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `recicladores_puntos_limpios`
+-- ----------------------------
+DROP TABLE IF EXISTS `recicladores_puntos_limpios`;
+CREATE TABLE `recicladores_puntos_limpios` (
+  `id_pl` int(11) NOT NULL,
+  `recicladores_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_pl`,`recicladores_id`),
+  KEY `fk_recicladores_puntos_limpios_recicladores1_idx` (`recicladores_id`),
+  CONSTRAINT `fk_recicladores_puntos_limpios_estados_puntos_limpios1` FOREIGN KEY (`id_pl`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recicladores_puntos_limpios_recicladores1` FOREIGN KEY (`recicladores_id`) REFERENCES `recicladores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of recicladores_puntos_limpios
 -- ----------------------------
 
 -- ----------------------------
@@ -185,54 +228,31 @@ CREATE TABLE `solicitud_juntas_vecinos` (
   `fecha` timestamp NOT NULL,
   `mostrar` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_soli`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of solicitud_juntas_vecinos
 -- ----------------------------
 INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '0000-00-00 00:00:00', '1');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('2', 'TEST', 'Paseo Gervasoni 408-488, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.041369668613214', '-71.62635996937752', '2016-07-04 17:39:50', '1');
 
-
--- -----------------------------------------------------
--- Table `OSI`.`recicladores_puntos_limpios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `OSI`.`recicladores_puntos_limpios` (
-  `id_pl` INT NOT NULL,
-  `recicladores_id` INT NOT NULL,
-  PRIMARY KEY (`id_pl`, `recicladores_id`),
-  INDEX `fk_recicladores_puntos_limpios_recicladores1_idx` (`recicladores_id` ASC),
-  CONSTRAINT `fk_recicladores_puntos_limpios_estados_puntos_limpios1`
-    FOREIGN KEY (`id_pl`)
-    REFERENCES `OSI`.`puntos_limpios` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_recicladores_puntos_limpios_recicladores1`
-    FOREIGN KEY (`recicladores_id`)
-    REFERENCES `OSI`.`recicladores` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
-
--- -----------------------------------------------------
--- Table `OSI`.`Vaciado`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `OSI`.`Vaciado` (
-  `idVaciado` INT NOT NULL AUTO_INCREMENT,
-  `fecha` TIMESTAMP NOT NULL,
-  `id_pl` INT NOT NULL,
-  `recicladores_id` INT NOT NULL,
+-- ----------------------------
+-- Table structure for `vaciado`
+-- ----------------------------
+DROP TABLE IF EXISTS `vaciado`;
+CREATE TABLE `vaciado` (
+  `idVaciado` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NOT NULL,
+  `id_pl` int(11) NOT NULL,
+  `recicladores_id` int(11) NOT NULL,
   PRIMARY KEY (`idVaciado`),
-  INDEX `fk_Vaciado_recicladores_puntos_limpios1_idx` (`id_pl` ASC, `recicladores_id` ASC),
-  CONSTRAINT `fk_Vaciado_recicladores_puntos_limpios1`
-    FOREIGN KEY (`id_pl` , `recicladores_id`)
-    REFERENCES `OSI`.`recicladores_puntos_limpios` (`id_pl` , `recicladores_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  KEY `fk_Vaciado_recicladores_puntos_limpios1_idx` (`id_pl`,`recicladores_id`),
+  CONSTRAINT `fk_Vaciado_recicladores_puntos_limpios1` FOREIGN KEY (`id_pl`, `recicladores_id`) REFERENCES `recicladores_puntos_limpios` (`id_pl`, `recicladores_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-INSERT INTO `Vaciado` VALUES ('1','2016-06-24 13:13:10','11','1');
-INSERT INTO `Vaciado` VALUES ('2','2016-05-25 13:00:00','13','1');
-INSERT INTO `Vaciado` VALUES ('3','2016-06-10 13:23:00','13','1');
+-- ----------------------------
+-- Records of vaciado
+-- ----------------------------
+INSERT INTO `vaciado` VALUES ('1', '2016-06-24 13:13:10', '11', '1');
+INSERT INTO `vaciado` VALUES ('2', '2016-05-25 13:00:00', '13', '1');
+INSERT INTO `vaciado` VALUES ('3', '2016-06-10 13:23:00', '13', '1');

@@ -41,16 +41,16 @@
 									<label>Dirección:</label>
 									<p class="form-control" id="dir"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="direccion" name="direccion"/>
-									<br>
+									<!--<br>-->
 
-									<label>Latitud:</label>
-									<p class="form-control" id="coordX"></p>
+									<label hidden="True">Latitud:</label>
+									<p hidden="True" class="form-control" id="coordX"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorX" name="coorX"/>
-									<label>Longitud:</label>
-									<p class="form-control" id="coordY"></p>
+									<label hidden="True">Longitud:</label>
+									<p hidden="True" class="form-control" id="coordY"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
 
-									<br>
+									<!--<br>-->
 									<div style="text-align:left; width: 90%;font-style:italic;">
 										<button class="btn btn-primary">Solicitar</button>
 									</div>
