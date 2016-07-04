@@ -38,7 +38,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
         <!--<li><a href="inscrip_curso.php">Inscribir Cursos</a></li>-->
-        <li class="active"><a href="#">Mis Cursos<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="#">Crear PL<span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="?s=logOut">Salir</a></li>
