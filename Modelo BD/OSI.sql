@@ -191,3 +191,48 @@ CREATE TABLE `solicitud_juntas_vecinos` (
 -- Records of solicitud_juntas_vecinos
 -- ----------------------------
 INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '0000-00-00 00:00:00', '1');
+
+
+-- -----------------------------------------------------
+-- Table `OSI`.`recicladores_puntos_limpios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `OSI`.`recicladores_puntos_limpios` (
+  `id_pl` INT NOT NULL,
+  `recicladores_id` INT NOT NULL,
+  PRIMARY KEY (`id_pl`, `recicladores_id`),
+  INDEX `fk_recicladores_puntos_limpios_recicladores1_idx` (`recicladores_id` ASC),
+  CONSTRAINT `fk_recicladores_puntos_limpios_estados_puntos_limpios1`
+    FOREIGN KEY (`id_pl`)
+    REFERENCES `OSI`.`puntos_limpios` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recicladores_puntos_limpios_recicladores1`
+    FOREIGN KEY (`recicladores_id`)
+    REFERENCES `OSI`.`recicladores` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+
+-- -----------------------------------------------------
+-- Table `OSI`.`Vaciado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `OSI`.`Vaciado` (
+  `idVaciado` INT NOT NULL AUTO_INCREMENT,
+  `fecha` TIMESTAMP NOT NULL,
+  `id_pl` INT NOT NULL,
+  `recicladores_id` INT NOT NULL,
+  PRIMARY KEY (`idVaciado`),
+  INDEX `fk_Vaciado_recicladores_puntos_limpios1_idx` (`id_pl` ASC, `recicladores_id` ASC),
+  CONSTRAINT `fk_Vaciado_recicladores_puntos_limpios1`
+    FOREIGN KEY (`id_pl` , `recicladores_id`)
+    REFERENCES `OSI`.`recicladores_puntos_limpios` (`id_pl` , `recicladores_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+INSERT INTO `Vaciado` VALUES ('1','2016-06-24 13:13:10','11','1');
+INSERT INTO `Vaciado` VALUES ('2','2016-05-25 13:00:00','13','1');
+INSERT INTO `Vaciado` VALUES ('3','2016-06-10 13:23:00','13','1');
