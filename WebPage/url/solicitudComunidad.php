@@ -15,6 +15,14 @@
 		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%;"';} ?> >
 			<div class="row-fluid">
 				<div class="col-md-12">
+					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 75%;padding: 00px;"';} ?> >
+						<div class="panel-body" id="descripcionSoli" style="text-align:center;font-style:italic;">
+							<i>Interfaz para solicitar un punto limpio en tu junta de vecinos.</i>
+							
+						</div>
+					</div>
+					<br>
+
 					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 88%;padding: 00px;"';} ?> >
 						<div class="panel-heading">
 							<a data-toggle="collapse" href="#collapseSoli">Solicitud para crear junta de vecinos</a>
@@ -22,9 +30,7 @@
 						<div id="collapseSoli" class="panel-collapse in">
 							<div class="panel-body">
 								<form action="?s=solicitarCrearJunta" method="post">
-									<i>Interfaz para solicitar un punto limpio en tu junta de vecinos</i>
-									<br><br>
-
+									
 									<label>Nombre de su junta de vecinos:</label>
 									<input type="text" required="" class="form-control" id="nombreJunta" name="nombreJunta"/>
 
