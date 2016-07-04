@@ -339,7 +339,28 @@ function initializeVer(){
 					document.getElementById("dir").innerHTML = address;
 					document.getElementById("direccion").value = address;
 				});
-				
+			}
+		}(parseInt(i/3)));
+		i++;
+		i++;
+	}
+
+	var marcadorExistente;
+	infowindowsExistente = [];
+	markerActuExistente = [];
+	for(var i = 0; i < (PuntosLimpiosExistente.length); i++){
+		console.log(PuntosLimpiosExistente[i]+" "+PuntosLimpiosExistente[i+1]);
+		marcadorExistente = new google.maps.Marker({position: {lat: parseFloat(PuntosLimpiosExistente[i]), lng: parseFloat(PuntosLimpiosExistente[i+1])}, map: mapVer,icon:"resources/pinkball.png",});		
+		infowindowExistente = new google.maps.InfoWindow({content:PuntosLimpiosExistente[i+2]});
+		marcadorExistente.setVisible(false);
+		markerActuExistente.push(marcadorExistente);
+		infowindowsExistente.push(infowindowExistente);
+		google.maps.event.addListener(markerActuExistente[parseInt(i/3)], 'click', function(k){
+			return function(){
+				for (var j = 0; j < infowindowsExistente.length; j++) {
+					infowindowsExistente[j].close();
+				}
+				infowindowsExistente[k].open(mapVer, markerActuExistente[k]);
 			}
 		}(parseInt(i/3)));
 		i++;
@@ -351,4 +372,11 @@ function placeMarkerVer(location){
 function mapaVerSoli(){
 	myCenterVer = new google.maps.LatLng(-33.0430962,-71.6184219);
 	google.maps.event.addDomListener(window, 'load', initializeVer);
+}
+function mostrarOcultarPLExistentes(){
+	var estadoCheckbox = document.getElementById("MostrarPuntos").checked;
+	for(var i = 0; i < markerActuExistente.length; i++){
+		infowindowsExistente[i].close();
+		markerActuExistente[i].setVisible(estadoCheckbox);
+	}
 }

@@ -6,8 +6,10 @@
 		<script>
 			<?php
 				$arreglo = array();
-				foreach(obtenerPuntosLimpios() as $key => $value){
-					array_push($arreglo, '"'.implode('", "', $value).'"');
+				if($puntosLimpios = obtenerPuntosLimpios()){
+					foreach($puntosLimpios as $key => $value){
+						array_push($arreglo, '"'.implode('", "', $value).'"');
+					}
 				}
 				echo "var PuntosLimpios = [";
 				echo implode(", ", $arreglo);
