@@ -265,3 +265,36 @@ function resizeGoogleMap(idGoogle, idDiv){
 	var ancho = document.getElementById(idDiv).offsetWidth - 30;
 	document.getElementById(idGoogle).style.width = ancho;
 }
+
+//Solicitar Junta Vecinos
+function initializeSoli(){
+	var mapProp = {center:myCenterPL, zoom:14, mapTypeId:google.maps.MapTypeId.ROADMAP};
+
+	mapPL = new google.maps.Map(document.getElementById("googleMapSoli"),mapProp);
+
+	google.maps.event.addListener(mapPL, 'click', function(event){ placeMarkerSoli(event.latLng); });
+}
+function placeMarkerSoli(location){
+	if(typeof(markerSoli) != 'undefined'){
+		markerSoli.setMap(null);
+	}
+	markerSoli = new google.maps.Marker({position: location, map: mapPL,});
+	var latitud = location.lat();
+	var longitud = location.lng();
+	var direccion = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&sensor=true";
+	document.getElementById('coorX').value = latitud;
+	document.getElementById("coordX").innerHTML = latitud;
+	document.getElementById('coorY').value = longitud;
+	document.getElementById("coordY").innerHTML = longitud;
+	console.log(direccion);
+	$.getJSON(direccion, function(result){
+		var address = result.results[0].formatted_address;
+		document.getElementById('direccion').value = address;
+		document.getElementById("dir").innerHTML = address;
+		console.log(address);
+	});
+}
+function mapaSolicitud(){
+	myCenterPL = new google.maps.LatLng(-33.0430962,-71.6184219);
+	google.maps.event.addDomListener(window, 'load', initializeSoli);
+}
