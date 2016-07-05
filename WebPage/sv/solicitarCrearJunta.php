@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["nombreJunta"]) && isset($_POST["direccion"]) && $_POST["coorX"] && $_POST["coorY"] && $_POST["nombreJunta"] && $_POST["direccion"]){
+if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["nombreJunta"]) && isset($_POST["direccion"]) && isset($_POST["telefono"]) && isset($_POST["nombre"]) && isset($_POST["email"]) && $_POST["coorX"] && $_POST["coorY"] && $_POST["nombreJunta"] && $_POST["direccion"] && $_POST["telefono"] && $_POST["nombre"] && $_POST["email"]){
 	$error = false;
 	if(!preg_match("/^-?[0-9]+[.][0-9]+$/", $_POST["coorX"])){
 		$error = true;
@@ -12,6 +12,18 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["nombreJunta
 	if(!preg_match("/^[a-zA-Z0-9\-\_\.\s°#]+$/", $_POST["nombreJunta"])){
 		$error = true;
 		jsAlert("Ha ingresado caracteres invalidos.");
+	}
+	if(!preg_match("/^\+?[0-9]{7,12}$/", $_POST["telefono"])){
+		$error = true;
+		jsAlert("Ingrese un numero de telefono valido.");
+	}
+	if(!preg_match("/^[a-zA-ZñÑ\s.-_]+$/", $_POST["nombre"])){
+		$error = true;
+		jsAlert("Ha ingresado caracteres invalidos en su nombre.");
+	}
+	if(!preg_match("/^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.[a-zA-Z0-9]+$/", $_POST["email"])){
+		$error = true;
+		jsAlert("Ingrese un mail valido.");
 	}
 	if(!$error){
 		require "loginData.php";
@@ -27,7 +39,7 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["nombreJunta
 				}
 				else{
 					$fecha = obtenerFechaHora();
-					$sql = "INSERT INTO solicitud_juntas_vecinos(nombre, direccion, posx, posy, fecha) VALUES ('{$_POST["nombreJunta"]}', '{$_POST["direccion"]}', '{$_POST["coorX"]}', '{$_POST["coorY"]}', '{$fecha}')";
+					$sql = "INSERT INTO solicitud_juntas_vecinos(nombre, direccion, posx, posy, fecha, nombre_contacto, telefono, email) VALUES ('{$_POST["nombreJunta"]}', '{$_POST["direccion"]}', '{$_POST["coorX"]}', '{$_POST["coorY"]}', '{$fecha}', '{$_POST["nombre"]}','{$_POST["telefono"]}', '{$_POST["email"]}')";
 					if($dbconn->query($sql)){
 						jsAlert("Datos añadidos satisfactoriamente.");
 					}

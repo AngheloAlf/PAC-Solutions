@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-07-04 18:13:34
+Date: 2016-07-05 11:50:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -84,7 +84,7 @@ CREATE TABLE `estados_puntos_limpios` (
   PRIMARY KEY (`id_estado`,`puntos_limpios_id`),
   KEY `fk_estados_puntos_limpios_puntos_limpios1_idx` (`puntos_limpios_id`),
   CONSTRAINT `fk_estados_puntos_limpios_puntos_limpios1` FOREIGN KEY (`puntos_limpios_id`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of estados_puntos_limpios
@@ -112,6 +112,7 @@ INSERT INTO `estados_puntos_limpios` VALUES ('20', '13', '0', '87', '2016-06-10 
 INSERT INTO `estados_puntos_limpios` VALUES ('21', '13', '0', '3', '2016-06-10 14:47:57');
 INSERT INTO `estados_puntos_limpios` VALUES ('22', '11', '0', '2', '2016-06-24 23:13:10');
 INSERT INTO `estados_puntos_limpios` VALUES ('23', '17', '0', '100', '2016-07-04 17:38:46');
+INSERT INTO `estados_puntos_limpios` VALUES ('24', '18', '0', '46', '2016-07-05 11:23:59');
 
 -- ----------------------------
 -- Table structure for `juntas_vecinos`
@@ -122,6 +123,9 @@ CREATE TABLE `juntas_vecinos` (
   `nombre` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `idpunto` int(11) NOT NULL,
+  `nombre_contacto` varchar(63) NOT NULL,
+  `telefono` varchar(63) NOT NULL,
+  `email` varchar(63) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_JUNTAS_VECINOS_1_idx` (`idpunto`),
   CONSTRAINT `fk_JUNTAS_VECINOS_1` FOREIGN KEY (`idpunto`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -165,7 +169,7 @@ CREATE TABLE `puntos_limpios` (
   `posx` double NOT NULL,
   `posy` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of puntos_limpios
@@ -179,6 +183,7 @@ INSERT INTO `puntos_limpios` VALUES ('15', 'Edwards 150, ValparaÃ­so, Valpara�
 INSERT INTO `puntos_limpios` VALUES ('17', 'Javiera Carrera 426-504, ValparaÃ­so, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Botellas', '0', '-33.03795310629821', '-71.59065037965775');
 INSERT INTO `puntos_limpios` VALUES ('18', 'Guillermo Munnich 339, ValparaÃ­so, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Latas', '0', '-33.04687478818968', '-71.63373738527298');
 INSERT INTO `puntos_limpios` VALUES ('19', 'Blanco Viel 415, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Botellas', '0', '-33.04119091789752', '-71.60146504640579');
+INSERT INTO `puntos_limpios` VALUES ('20', 'ErrÃ¡zuriz 2190, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', 'Latas', '0', '-33.044077866208724', '-71.61251876503229');
 
 -- ----------------------------
 -- Table structure for `recicladores`
@@ -192,7 +197,7 @@ CREATE TABLE `recicladores` (
   `posx` double NOT NULL,
   `posy` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of recicladores
@@ -227,14 +232,19 @@ CREATE TABLE `solicitud_juntas_vecinos` (
   `posy` double NOT NULL,
   `fecha` timestamp NOT NULL,
   `mostrar` tinyint(4) NOT NULL DEFAULT '1',
+  `nombre_contacto` varchar(63) NOT NULL,
+  `telefono` varchar(63) NOT NULL,
+  `email` varchar(63) NOT NULL,
   PRIMARY KEY (`id_soli`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of solicitud_juntas_vecinos
 -- ----------------------------
-INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '0000-00-00 00:00:00', '1');
-INSERT INTO `solicitud_juntas_vecinos` VALUES ('2', 'TEST', 'Paseo Gervasoni 408-488, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.041369668613214', '-71.62635996937752', '2016-07-04 17:39:50', '1');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Nombre', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '2016-07-03 13:25:14', '1', 'Nombre', '+56932165498', 'fulanito.delmal@correo.correo');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('2', 'TEST', 'Paseo Gervasoni 408-488, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.041369668613214', '-71.62635996937752', '2016-07-04 17:39:50', '1', 'Otra persona', '+56985285285', 'maldad@mail.net');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('3', 'El bosque', 'Dieciocho 465, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.051801786369964', '-71.61563113331795', '2016-07-05 00:26:34', '1', 'Juanito Perez', '+569123456789', 'juanito.perez@mail.com');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('4', 'Junta', 'JosÃ© TomÃ¡s Ramos 693, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.04358266236688', '-71.63320161402225', '2016-07-05 11:26:19', '1', 'Sr. Don Contacto', '+5691234598', 'correofalso@mentiras.muajajaja');
 
 -- ----------------------------
 -- Table structure for `vaciado`

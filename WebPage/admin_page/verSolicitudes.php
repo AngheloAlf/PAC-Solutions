@@ -38,14 +38,14 @@
 	<body style="background-color:gainsboro" onresize="resizeGoogleMap('googleMapVer', 'collapseVer')">
 		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
 			<div class="row-fluid">
-				<div class="col-md-12">
+				<div class="col-md-8">
 					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 95%;padding: 00px;"';} ?> >
 						<div class="panel-heading">
 							<a data-toggle="collapse" href="#collapseVer">Ver solicitudes de Juntas de vecinos</a>
 						</div>
 						<div id="collapseVer" class="panel-collapse in">
 							<div class="panel-body">
-								<form action="" onsubmit="return WIP()" method="post">
+								<form action="?s=crearPuntoVecinos" onsubmit="return WIP()" method="post">
 									
 									<label>Ubicación:</label>
 									<div id="googleMapVer" name="googleMap" style="width:640px;height:380px;"></div>
@@ -78,6 +78,33 @@
 									<button class="btn btn-primary">Crear</button>
 									<!--<br>-->
 								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 95%;padding: 00px;"';} ?> >
+						<div class="panel-heading">
+							<a data-toggle="collapse" href="#collapseVerInfo">Informacion de la solicitud</a>
+						</div>
+						<div id="collapseVerInfo" class="panel-collapse collapse">
+							<div class="panel-body">
+								
+								<label>Nombre de la junta de vecinos:</label>
+								<p type="text"  class="form-control" id="nombreJunta" name="nombreJunta" ></p>
+								<br/>
+								<label>Nombre de contacto:</label>
+								<p type="text" class="form-control" id="nombre" name="nombre"></p>
+								<br/>
+								<label>Telefono de contacto:</label>
+								<p class="form-control" id="telefono" name="telefono"></p>
+								<br/>
+								<label>e-Mail de contacto:</label>
+								<p class="form-control" id="email" name="email"></p>
+								<br/>
+								<label>Fecha de la solicitud:</label>
+								<p class="form-control" id="fecha" name="fecha"></p>
+
 							</div>
 						</div>
 					</div>
