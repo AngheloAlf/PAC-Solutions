@@ -1,5 +1,4 @@
 <?php
-	include "sv_adodb5/common.php";
 	if(isset($_POST["tipo"]) && isset($_POST["criterio"]) && isset($_POST["slider"])){
 		$_SESSION["params"] = array("tipo"=>$_POST["tipo"],"criterio"=>$_POST["criterio"],"valor"=>$_POST["slider"]);
 	}
