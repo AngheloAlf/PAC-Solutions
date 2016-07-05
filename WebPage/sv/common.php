@@ -166,7 +166,7 @@ function obtenerSolicitudesJuntas(){
 		return false;
 	}
 	else{
-		$sql = "SELECT posx, posy, nombre FROM solicitud_juntas_vecinos WHERE mostrar='1'";
+		$sql = "SELECT posx, posy, nombre, fecha, nombre_contacto, telefono, email FROM solicitud_juntas_vecinos WHERE mostrar='1'";
 		$check = $dbconn->query($sql);
 		return $check->fetch_all(MYSQLI_NUM);
 	}

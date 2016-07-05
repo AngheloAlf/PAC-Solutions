@@ -316,7 +316,7 @@ function initializeVer(){
 		infowindow = new google.maps.InfoWindow({content:PuntosLimpios[i+2]});
 		markerActu.push(marcador);
 		infowindows.push(infowindow);
-		google.maps.event.addListener(markerActu[parseInt(i/3)], 'click', function(k){
+		google.maps.event.addListener(markerActu[parseInt(i/6)], 'click', function(k){
 			return function(){
 				for (var j = 0; j < infowindows.length; j++) {
 					infowindows[j].close();
@@ -339,10 +339,16 @@ function initializeVer(){
 					document.getElementById("dir").innerHTML = address;
 					document.getElementById("direccion").value = address;
 				});
+				var infoI = k*7 + 2;
+				document.getElementById("nombreJunta").innerHTML = PuntosLimpios[infoI];
+				document.getElementById("nombre").innerHTML = PuntosLimpios[infoI+2];
+				document.getElementById("telefono").innerHTML = PuntosLimpios[infoI+3];
+				document.getElementById("email").innerHTML = PuntosLimpios[infoI+4];
+				document.getElementById("fecha").innerHTML = PuntosLimpios[infoI+1];
+				$('#collapseVerInfo').collapse("show");
 			}
-		}(parseInt(i/3)));
-		i++;
-		i++;
+		}(parseInt(i/7)));
+		i += 6;
 	}
 
 	var marcadorExistente;
@@ -363,14 +369,13 @@ function initializeVer(){
 				infowindowsExistente[k].open(mapVer, markerActuExistente[k]);
 			}
 		}(parseInt(i/3)));
-		i++;
-		i++;
+		i += 2;
 	}
 }
 function placeMarkerVer(location){
 }
 function mapaVerSoli(){
-	myCenterVer = new google.maps.LatLng(-33.0430962,-71.6184219);
+	myCenterVer = new google.maps.LatLng(-33.0430562,-71.6084219);
 	google.maps.event.addDomListener(window, 'load', initializeVer);
 }
 function mostrarOcultarPLExistentes(){
