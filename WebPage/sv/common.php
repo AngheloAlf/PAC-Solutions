@@ -158,6 +158,20 @@ function obtenerPuntosLimpios(){
 	}
 }
 
+function obtenerRecolectores(){
+	require "sv/loginData.php";
+	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+	if(mysqli_connect_error()){
+		jsAlert("Ha ocurrido un problema al conectar la base de datos. Intentelo mas tarde.");
+		return false;
+	}
+	else{
+		$sql = "SELECT posx, posy, nombre FROM recicladores";
+		$check = $dbconn->query($sql);
+		return $check->fetch_all(MYSQLI_NUM);
+	}
+}
+
 function obtenerSolicitudesJuntas(){
 	require "sv/loginData.php";
 	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);

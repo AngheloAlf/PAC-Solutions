@@ -20,13 +20,13 @@
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="admin_index.php?page=crearLimpio">Creacion de punto limpio<span class="sr-only">(current)</span></a></li>
-				<li><a href="admin_index.php?page=verSolicitudes">Ver solicitudes de juntas de vecinos</a></li>
-				
+				<li <?php if ($_GET["page"]=="crearLimpio"){echo 'class="active"';}?>><a href="admin_index.php?page=crearLimpio">Creacion de punto limpio<span class="sr-only">(current)</span></a></li>
+				<li <?php if ($_GET["page"]=="verSolicitudes"){echo 'class="active"';}?>><a href="admin_index.php?page=verSolicitudes">Ver solicitudes de juntas de vecinos</a></li>
+				<li <?php if ($_GET["page"]=="agregarRecolector"){echo 'class="active"';}?>><a href="admin_index.php?page=agregarRecolector">Agregar Recolector</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="?s=logOut">Salir</a></li>
 			</ul>
-		</div>	
+		</div>
 	</div>
 </nav>
