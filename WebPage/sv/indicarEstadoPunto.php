@@ -24,7 +24,7 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["slider"]) &
 			if($check = $dbconn->query($sql)){
 				$id = $check->fetch_row()[0];
 				$fecha = obtenerFechaHora();
-				$sql2 = "INSERT INTO estados_puntos_limpios(id_punto_limpio, estado, fecha) VALUES ('{$id}', '{$_POST["slider"]}', '{$fecha}')";
+				$sql2 = "INSERT INTO estados_puntos_limpios(puntos_limpios_id, vaciado, estado, fecha) VALUES ('{$id}','0','{$_POST["slider"]}', '{$fecha}')";
 				if($dbconn->query($sql2)){
 					jsAlert("Datos añadidos satisfactoriamente.");
 				}

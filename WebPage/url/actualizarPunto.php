@@ -1,19 +1,20 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<script>document.title = "Indicar estado de Punto Limpio";</script>
 		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<?php
+			$arreglo = array();
+			$puntosLimpios = obtenerPuntosLimpios();
+
+			foreach($puntosLimpios as $key => $value){
+				array_push($arreglo, '"'.implode('", "', $value).'"');
+			}
+			echo "<script>var PuntosLimpios = [";
+			echo implode(", ", $arreglo);
+			echo "];</script>";
+		?>
 		<script>
-			<?php
-				$arreglo = array();
-				foreach(obtenerPuntosLimpios() as $key => $value){
-					array_push($arreglo, '"'.implode('", "', $value).'"');
-				}
-				echo "var PuntosLimpios = [";
-				echo implode(", ", $arreglo);
-				echo "];";
-			?>
 			var mapActu;
 			var myCenterActu;
 			var markerActu = [];

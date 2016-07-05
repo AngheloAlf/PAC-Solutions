@@ -44,7 +44,6 @@ function obtenerFechaHoraParaUsuario(){
 	return date('d/m/Y G:i:s');
 }
 
-
 function redireccionarA($Pagina){
 	echo '<html><meta http-equiv="refresh" content="0;URL='.$Pagina.'" /></html>';
 }
@@ -158,6 +157,21 @@ function obtenerPuntosLimpios(){
 		return $check->fetch_all(MYSQLI_NUM);
 	}
 }
+
+function obtenerSolicitudesJuntas(){
+	require "sv/loginData.php";
+	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+	if(mysqli_connect_error()){
+		jsAlert("Ha ocurrido un problema al conectar la base de datos. Intentelo mas tarde.");
+		return false;
+	}
+	else{
+		$sql = "SELECT posx, posy, nombre FROM solicitud_juntas_vecinos";
+		$check = $dbconn->query($sql);
+		return $check->fetch_all(MYSQLI_NUM);
+	}
+}
+
 
 autoRedirect("common.php", "index.php");
 
