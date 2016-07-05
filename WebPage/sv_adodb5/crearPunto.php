@@ -30,6 +30,7 @@ if(isset($_POST["tipoPL"]) && isset($_POST["coorX"]) && isset($_POST["coorY"]) &
 				jsAlert("Datos añadidos satisfactoriamente.");
 			}
 			else{
+				jsAlert($dbconn->error);
 				jsAlert("Ha ocurrido un error al intentar agregar los datos.");
 			}
 		}

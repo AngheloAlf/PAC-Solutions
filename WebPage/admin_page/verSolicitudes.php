@@ -13,7 +13,20 @@
 				}
 				echo "var PuntosLimpios = [";
 				echo implode(", ", $arreglo);
+				echo "];
+				";
+
+				$arreglo2 = array();
+				if($PLexistentes = obtenerPuntosLimpios()){
+					foreach($PLexistentes as $key => $value2){
+						array_push($arreglo2, '"'.implode('", "', $value2).'"');
+					}
+				}
+				echo "var PuntosLimpiosExistente = [";
+				echo implode(", ", $arreglo2);
 				echo "];";
+				echo "
+				var infowindowsExistente;var markerActuExistente;";
 			?>
 			var mapVer;
 			var myCenterVer;
@@ -32,10 +45,13 @@
 						</div>
 						<div id="collapseVer" class="panel-collapse in">
 							<div class="panel-body">
-								<form action="" onsubmit="return WIP()" method="post">
+								<form action="?s=crearPuntoVecinos" onsubmit="return WIP()" method="post">
 									
 									<label>Ubicación:</label>
 									<div id="googleMapVer" name="googleMap" style="width:640px;height:380px;"></div>
+									<br>
+									<label>Mostrar/Ocultar puntos limpios ya exitentes.</label>
+									<input type="checkbox" id="MostrarPuntos" name="MostrarPuntos" onchange="mostrarOcultarPLExistentes()" />
 									<br>
 
 									<label>Dirección:</label>
@@ -43,11 +59,11 @@
 									<input type="text" hidden="True" required="" class="form-control" id="direccion" name="direccion"/>
 									
 
-									<label>Latitud:</label>
-									<p class="form-control" id="coordX"></p>
+									<label hidden="True">Latitud:</label>
+									<p hidden="True" class="form-control" id="coordX"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorX" name="coorX"/>
-									<label>Longitud:</label>
-									<p class="form-control" id="coordY"></p>
+									<label hidden="True">Longitud:</label>
+									<p hidden="True" class="form-control" id="coordY"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
 
 									<label>Tipo de Punto Limpio:</label>
@@ -58,9 +74,9 @@
 									</select>
 									<br>
 
-									<br>
+									<!--<br>-->
 									<button class="btn btn-primary">Crear</button>
-									<br>
+									<!--<br>-->
 								</form>
 							</div>
 						</div>
@@ -71,5 +87,8 @@
 		<br>
 		<br>
 	</body>
-	<script>resizeGoogleMap('googleMapVer', 'collapseVer')</script>
+	<script>
+		resizeGoogleMap('googleMapVer', 'collapseVer');
+		mostrarOcultarPLExistentes();
+	</script>
 </html>

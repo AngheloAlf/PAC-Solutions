@@ -29,21 +29,13 @@ if(isset($_POST["coorX"]) && isset($_POST["coorY"]) && isset($_POST["slider"]) &
 					jsAlert("Datos añadidos satisfactoriamente.");
 				}
 				else{
-					jsAlert($dbconn->error);
+					//jsAlert($dbconn->error);
 					jsAlert("Ha ocurrido un error al ingresar los datos.");
 				}
 			}
 			else{
 				jsAlert("Ha ocurrido un error al acceder a los datos.");
 			}
-			/*$sql = "INSERT INTO puntos_limpios(direccion, tipo, estado, posx, posy) VALUES ('{$_POST["direccion"]}', '{$_POST["tipoPL"]}', '0', '{$_POST["coorX"]}', '{$_POST["coorY"]}')";
-			$check = $dbconn->query($sql);
-			if($check){
-				jsAlert("Datos añadidos satisfactoriamente.");
-			}
-			else{
-				jsAlert("Ha ocurrido un error al intentar agregar los datos.");
-			}*/
 		}
 	}
 }
