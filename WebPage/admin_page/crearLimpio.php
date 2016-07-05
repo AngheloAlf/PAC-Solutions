@@ -6,8 +6,10 @@
 		<script>
 			<?php
 				$arreglo = array();
-				foreach(obtenerPuntosLimpios() as $key => $value){
-					array_push($arreglo, '"'.implode('", "', $value).'"');
+				if($puntosLimpios = obtenerPuntosLimpios()){
+					foreach($puntosLimpios as $key => $value){
+						array_push($arreglo, '"'.implode('", "', $value).'"');
+					}
 				}
 				echo "var PuntosLimpios = [";
 				echo implode(", ", $arreglo);
@@ -47,16 +49,16 @@
 									<input type="text" hidden="True" required="" class="form-control" id="direccion" name="direccion"/>
 									
 
-									<label>Latitud:</label>
-									<p class="form-control" id="coordX"></p>
+									<label hidden="True">Latitud:</label>
+									<p hidden="True" class="form-control" id="coordX"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorX" name="coorX"/>
-									<label>Longitud:</label>
-									<p class="form-control" id="coordY"></p>
+									<label hidden="True">Longitud:</label>
+									<p hidden="True" class="form-control" id="coordY"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
 
 									<br>
 									<button class="btn btn-primary">Crear</button>
-									<br>
+									<!--<br>-->
 								</form>
 							</div>
 						</div>

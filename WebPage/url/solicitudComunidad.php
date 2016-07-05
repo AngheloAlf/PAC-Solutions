@@ -32,7 +32,13 @@
 								<form action="?s=solicitarCrearJunta" method="post">
 									
 									<label>Nombre de su junta de vecinos:</label>
-									<input type="text" required="" class="form-control" id="nombreJunta" name="nombreJunta"/>
+									<input type="text" required="" class="form-control" id="nombreJunta" name="nombreJunta" placeholder="Junta de vecinos El Bosque" />
+									<label>Nombre de contacto:</label>
+									<input type="text" required="" class="form-control" id="nombre" name="nombre" placeholder="Juanito Perez" />
+									<label>Telefono de contacto:</label>
+									<input type="tel" required="" class="form-control" id="telefono" name="telefono" placeholder="+56912345678" />
+									<label>e-Mail de contacto:</label>
+									<input type="mail" required="" class="form-control" id="email" name="email" placeholder="juanito.perez@mail.com" />
 
 									<br>
 									<label>Ubicación:</label>
@@ -41,16 +47,16 @@
 									<label>Dirección:</label>
 									<p class="form-control" id="dir"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="direccion" name="direccion"/>
-									<br>
+									<!--<br>-->
 
-									<label>Latitud:</label>
-									<p class="form-control" id="coordX"></p>
+									<label hidden="True">Latitud:</label>
+									<p hidden="True" class="form-control" id="coordX"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorX" name="coorX"/>
-									<label>Longitud:</label>
-									<p class="form-control" id="coordY"></p>
+									<label hidden="True">Longitud:</label>
+									<p hidden="True" class="form-control" id="coordY"></p>
 									<input type="text" hidden="True" required="" class="form-control" id="coorY" name="coorY"/>
 
-									<br>
+									<!--<br>-->
 									<div style="text-align:left; width: 90%;font-style:italic;">
 										<button class="btn btn-primary">Solicitar</button>
 									</div>
