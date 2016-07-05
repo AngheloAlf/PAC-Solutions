@@ -45,7 +45,7 @@
 						</div>
 						<div id="collapseVer" class="panel-collapse in">
 							<div class="panel-body">
-								<form action="" onsubmit="return WIP()" method="post">
+								<form action="?s=crearPuntoVecinos" onsubmit="return WIP()" method="post">
 									
 									<label>Ubicación:</label>
 									<div id="googleMapVer" name="googleMap" style="width:640px;height:380px;"></div>

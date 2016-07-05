@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-07-04 18:13:34
+Date: 2016-07-05 00:27:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -122,6 +122,9 @@ CREATE TABLE `juntas_vecinos` (
   `nombre` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `idpunto` int(11) NOT NULL,
+  `nombre_contacto` varchar(63) NOT NULL,
+  `telefono` varchar(63) NOT NULL,
+  `email` varchar(63) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_JUNTAS_VECINOS_1_idx` (`idpunto`),
   CONSTRAINT `fk_JUNTAS_VECINOS_1` FOREIGN KEY (`idpunto`) REFERENCES `puntos_limpios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -227,14 +230,18 @@ CREATE TABLE `solicitud_juntas_vecinos` (
   `posy` double NOT NULL,
   `fecha` timestamp NOT NULL,
   `mostrar` tinyint(4) NOT NULL DEFAULT '1',
+  `nombre_contacto` varchar(63) NOT NULL,
+  `telefono` varchar(63) NOT NULL,
+  `email` varchar(63) NOT NULL,
   PRIMARY KEY (`id_soli`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of solicitud_juntas_vecinos
 -- ----------------------------
-INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '0000-00-00 00:00:00', '1');
-INSERT INTO `solicitud_juntas_vecinos` VALUES ('2', 'TEST', 'Paseo Gervasoni 408-488, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.041369668613214', '-71.62635996937752', '2016-07-04 17:39:50', '1');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('1', 'Casa Fede', 'ValdÃ©s 157, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.03497137567222', '-71.59266019240022', '0000-00-00 00:00:00', '1', '', '', '');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('2', 'TEST', 'Paseo Gervasoni 408-488, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.041369668613214', '-71.62635996937752', '2016-07-04 17:39:50', '1', '', '', '');
+INSERT INTO `solicitud_juntas_vecinos` VALUES ('3', 'El bosque', 'Dieciocho 465, ValparaÃ­so, RegiÃ³n de ValparaÃ­so, Chile', '-33.051801786369964', '-71.61563113331795', '2016-07-05 00:26:34', '1', 'Juanito Perez', '+569123456789', 'juanito.perez@mail.com');
 
 -- ----------------------------
 -- Table structure for `vaciado`

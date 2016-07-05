@@ -32,7 +32,13 @@
 								<form action="?s=solicitarCrearJunta" method="post">
 									
 									<label>Nombre de su junta de vecinos:</label>
-									<input type="text" required="" class="form-control" id="nombreJunta" name="nombreJunta"/>
+									<input type="text" required="" class="form-control" id="nombreJunta" name="nombreJunta" placeholder="Junta de vecinos El Bosque" />
+									<label>Nombre de contacto:</label>
+									<input type="text" required="" class="form-control" id="nombre" name="nombre" placeholder="Juanito Perez" />
+									<label>Telefono de contacto:</label>
+									<input type="tel" required="" class="form-control" id="telefono" name="telefono" placeholder="+56912345678" />
+									<label>e-Mail de contacto:</label>
+									<input type="mail" required="" class="form-control" id="email" name="email" placeholder="juanito.perez@mail.com" />
 
 									<br>
 									<label>Ubicación:</label>
