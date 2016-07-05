@@ -1,3 +1,10 @@
+<?php
+	include "sv_adodb5/common.php";
+	if(isset($_POST["tipo"]) && isset($_POST["criterio"]) && isset($_POST["slider"])){
+		$_SESSION["params"] = array("tipo"=>$_POST["tipo"],"criterio"=>$_POST["criterio"],"valor"=>$_POST["slider"]);
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,7 +21,7 @@
 						</div>
 						<div id="collapsePL" class="panel-collapse in">
 							<div class="panel-body">
-								<form style="text-align:center;" class="form-inline" action="?s=puntos_limpios_handler" method="post">
+								<form style="text-align:center;" class="form-inline" action="" method="post">
 									<div class="form-group">
 										<label for="tipoBusq">Tipo de Busqueda:</label>
 										<select class="form-control" id="tipo" name="tipo" onchange=madeDetalleEstadoBasura()>
@@ -34,6 +41,10 @@
 								if(isset($_SESSION["params"])){
 									$ubicaciones = puntosLimpios($_SESSION["params"]);
 									$tabla = '
+									<label>Ubicación:</label>
+									<div id="map" style="width:640px;height:380px;"></div>
+									<br>
+
 									<div class="panel panel-info">
 										<div class="panel-heading">
 											<h3 class="panel-title">Información Regillas:</h3>
@@ -43,7 +54,7 @@
 													<thead>
 														<tr class="info">
 															<th>Dirección</th>
-															<th>tipo</th>
+															<th>Tipo</th>
 															<th>Capacidad Actual</th>
 														</tr>
 													</thead>
@@ -52,8 +63,7 @@
 										$tabla.='<tr id="'.$i.'" name="rows"><td>'.$ubicaciones[$i]["direccion"].'</td><td>'.$ubicaciones[$i]["tipo"].'</td><td>'.$ubicaciones[$i]["estado"].'%</td></tr>';
 									}
 									$tabla.= '</tbody></table></div></div>
-									<label>Ubicación:</label>
-									<div id="map" style="width:640px;height:380px;"></div>
+									
 									<br>';
 									echo $tabla;
 								}
